@@ -10,11 +10,34 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "unused-imports"],
+  "plugins": ["react", "unused-imports", "import"],
   "rules": {
     "import/prefer-default-export": "off",
     "react/react-in-jsx-scope": "off",
     "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": "warn"
+    "unused-imports/no-unused-vars": "off",
+    "import/order": [
+      "warn",
+      {
+        "groups": [
+          "index",
+          "sibling",
+          "parent",
+          "internal",
+          "external",
+          "builtin",
+          "object",
+          "type"
+        ],
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
