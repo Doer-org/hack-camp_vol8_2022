@@ -16,6 +16,7 @@
     "react/react-in-jsx-scope": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": "off",
+    "react/prop-types": "off",
     "import/order": [
       "warn",
       {
