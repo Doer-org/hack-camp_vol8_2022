@@ -11,7 +11,8 @@ export const InputBlock = ({
   name,
   options,
   placeholder,
-  defaultValue
+  defaultValue,
+  unit
 }) => {
   const {
     register,
@@ -23,29 +24,43 @@ export const InputBlock = ({
     : 'border-gray-600 focus:bg-indigo-100 focus:outline-indigo-200';
 
   return (
-    <div className="my-1">
+    <div className="mb-5">
       <label htmlFor={name} className="mb-2">
         <span className="text-sm">
           {text}
           {isRequired && <span className="text-red-600">*</span>}
         </span>
-        {subText && <div className="text-xxs text-gray-400">{subText}</div>}
+        {subText && <div className="text-xs text-gray-400">{subText}</div>}
       </label>
-      <div className="text-xxs text-red-600 my-2">
+      <div className="text-xs text-red-600 my-2">
         <ErrorMessage
           errors={errors}
           name={name}
           render={({ message }) => <p>{message}</p>}
         />
       </div>
-      <input
-        className={`${colorStyle} ${'border rounded px-3 py-2 text-sm mr-4'}`}
-        id={name}
-        type={type}
-        {...register(name, options)}
-        placeholder={placeholder}
-        defaultValue={defaultValue}
-      />
+      {unit ? (
+        <div className="flex items-center">
+          <input
+            className={`${colorStyle} ${'border rounded px-3 py-2 text-sm mr-4 w-30'}`}
+            id={name}
+            type={type}
+            {...register(name, options)}
+            placeholder={placeholder}
+            defaultValue={defaultValue}
+          />
+          {unit && <span className="text-sm">{unit}</span>}
+        </div>
+      ) : (
+        <input
+          className={`${colorStyle} ${'border rounded px-3 py-2 text-sm mr-4 w-full'}`}
+          id={name}
+          type={type}
+          {...register(name, options)}
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+        />
+      )}
     </div>
   );
 };

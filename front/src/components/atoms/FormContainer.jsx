@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
-export const Form = ({ submitFunction, className, children }) => {
+export const FormContainer = ({ submitFunction, className, id, children }) => {
   const methods = useForm();
 
   const onSubmit = (data) => {
@@ -9,7 +9,11 @@ export const Form = ({ submitFunction, className, children }) => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className={className}>
+      <form
+        onSubmit={methods.handleSubmit(onSubmit)}
+        className={className}
+        id={id}
+      >
         {children}
       </form>
     </FormProvider>

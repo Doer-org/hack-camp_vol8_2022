@@ -1,4 +1,5 @@
 import './styles/App.css';
+import { AppContainer } from './components/layout/AppContainer';
 import { Footer } from './components/layout/Footer';
 import { Header } from './components/layout/Header';
 import { AppRoutes } from './routes';
@@ -9,7 +10,9 @@ function App() {
     <BrowserRouter>
       <div className="flex flex-col min-h-screen">
         <Header />
-        <AppRoutes />
+        <AppContainer>
+          <AppRoutes />
+        </AppContainer>
         <Footer />
       </div>
     </BrowserRouter>
