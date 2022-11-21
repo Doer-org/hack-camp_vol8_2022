@@ -7,9 +7,11 @@ import { BrowserRouter } from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <AppRoutes />
-      <Footer />
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <AppRoutes />
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

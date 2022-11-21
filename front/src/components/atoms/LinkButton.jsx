@@ -1,6 +1,5 @@
-export const LinkButton = (props) => {
-  const { label, color, size, disabled, path } = props;
-  const className = `${color} ${size} ${'items-center rounded-md px-4 py-2'}`;
+export const LinkButton = ({ label, color, path, disabled }) => {
+  const className = `${color} ${'items-center rounded-md px-4 py-2'}`;
 
   return (
     <a href={path}>

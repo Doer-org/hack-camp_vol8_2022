@@ -1,3 +1,9 @@
+import { AppContainer } from '../components/layout/AppContainer';
+
 export const Home = () => {
-  return <div>Home</div>;
+  return (
+    <AppContainer>
+      <div className="">こんにちは</div>
+    </AppContainer>
+  );
 };
