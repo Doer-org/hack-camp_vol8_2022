@@ -12,6 +12,7 @@
   },
   "plugins": ["react", "unused-imports", "import"],
   "rules": {
+    "no-unused-vars": "warn",
     "import/prefer-default-export": "off",
     "react/react-in-jsx-scope": "off",
     "unused-imports/no-unused-imports": "error",
