@@ -3,6 +3,7 @@ import { InputBlock } from '../atoms/InputBlock';
 import Modal from '../atoms/Modal';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 export const CreateEventForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,12 +25,16 @@ export const CreateEventForm = () => {
 
   const methods = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     if (canSubmit) {
       console.log(data);
       //APIを叩く
       closeModal();
       handleCannotSubmit();
+      //成功したら
+      navigate('/new/complete');
     } else {
       handleCanSubmit();
       openModal();
