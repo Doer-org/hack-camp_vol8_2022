@@ -21,7 +21,6 @@ export const LineLoginRoutes = () => {
   const state = generateRandomString();
   const client_secret = 'bafde86582cd2ba675804f11d3092893';
   const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
-  console.log(state);
 
   function RedirectToProvider() {
     // 👇️ redirect to external URL
@@ -42,7 +41,9 @@ export const LineLoginRoutes = () => {
     params.append('client_id', client_id);
     params.append('client_secret', client_secret);
 
-    axios.post('https://api.line.me/oauth2/v2.1/token', params);
+    axios.post('https://api.line.me/oauth2/v2.1/token', params).then((res) => {
+      console.log(res.data);
+    });
   }
 
   return (
