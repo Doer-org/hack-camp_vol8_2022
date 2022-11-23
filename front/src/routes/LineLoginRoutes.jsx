@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
-export const lineLoginRoute = () => {
+export const LineLoginRoutes = () => {
   const [session] = useRecoilState(isAuthenticatedState);
   const navigate = useNavigate();
   useEffect(() => {

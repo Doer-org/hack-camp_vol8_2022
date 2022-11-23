@@ -1,4 +1,4 @@
-import { LineLoginRoute } from './LineLoginRoute';
+import { LineLoginRoute } from './LineLoginRoutes';
 import { ProtectedRoutes } from './ProtectedRoutes';
 import { isAuthenticatedState } from '../hooks/sessionStore';
 import React from 'react';
