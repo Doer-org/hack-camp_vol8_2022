@@ -4,6 +4,7 @@ import { Footer } from './components/layout/Footer';
 import { Header } from './components/layout/Header';
 import { AppRoutes } from './routes';
 import { BrowserRouter } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
       <div className="flex flex-col min-h-screen">
         <Header />
         <AppContainer>
-          <AppRoutes />
+          <RecoilRoot>
+            <AppRoutes />
+          </RecoilRoot>
         </AppContainer>
         <Footer />
       </div>
