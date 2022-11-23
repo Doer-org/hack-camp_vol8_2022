@@ -14,7 +14,7 @@ export const lineLoginRoute = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<LineLogin />} />
+      <Route path="/" />
     </Routes>
   );
 };
