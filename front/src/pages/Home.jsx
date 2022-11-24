@@ -1,4 +1,4 @@
-import { isAuthenticatedState } from './sessionStore';
+import { isAuthenticatedState } from '../hooks/sessionStore';
 import { useRecoilState } from 'recoil';
 
 export const Home = () => {
