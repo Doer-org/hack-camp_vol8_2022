@@ -3,6 +3,7 @@ import {
   HandleProviderCallback,
   RedirectToProvider
 } from '../hooks/useLineLogin';
+import { LineLogin } from '../pages/LineLogin';
 import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -18,7 +19,7 @@ export const LineLoginRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<RedirectToProvider />} />
+      <Route path="/" element={<LineLogin />} />
       <Route path="/login" element={<RedirectToProvider />} />
       <Route path="/line/callback" element={<HandleProviderCallback />} />
     </Routes>
