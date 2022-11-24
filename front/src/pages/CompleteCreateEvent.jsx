@@ -34,7 +34,7 @@ export const CompleteCreateEvent = () => {
       <hr />
       <div className="text-center my-5">
         <LinkButton
-          path="/"
+          path="/home"
           label="ホームに戻る"
           color="bg-white text-purple-500 border border-purple-500"
         />
