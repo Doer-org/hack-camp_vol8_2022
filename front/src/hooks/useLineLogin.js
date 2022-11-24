@@ -21,7 +21,7 @@ export const RedirectToProvider = () => {
 export const HandleProviderCallback = () => {
   const [queryParameters] = useSearchParams();
   const returnCode = queryParameters.get('code');
-  // const returnState = queryParameters.get('state');
+  const returnState = queryParameters.get('state');
 
   var params = new URLSearchParams();
   params.append('grant_type', 'authorization_code');
@@ -29,6 +29,9 @@ export const HandleProviderCallback = () => {
   params.append('redirect_uri', redirect_uri);
   params.append('client_id', client_id);
   params.append('client_secret', client_secret);
+
+  console.log('state', state);
+  console.log('returnState', returnState);
 
   // [todo] 返ってきたstateのチェックをしたい
   //stateが最初にリダイレクトしたものと一致しない、レンダリングで異なるurlになっている
