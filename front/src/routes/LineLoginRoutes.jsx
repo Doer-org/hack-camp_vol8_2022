@@ -61,6 +61,7 @@ export const LineLoginRoutes = () => {
           baseURL: 'https://api.line.me',
           Authorization: `Bearer ${accessToken}`
         });
+        console.log(axiosProfile);
 
         axiosProfile.get('/v2/profile').then((res) => {
           console.log(res.data);
