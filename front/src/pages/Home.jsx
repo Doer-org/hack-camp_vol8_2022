@@ -21,6 +21,27 @@ export const Home = () => {
           は、割り勘を計算し、LINEのメッセージ機能を利用することで、円滑に割り勘をし公平にお金を払うことができるツールです。
         </p>
       </div>
+      <div className="shadow-lg rounded-2xl bg-white p-2">
+        <div className="flex-row gap-4 flex justify-center items-center">
+          <div className="flex-shrink-0">
+            <img
+              alt="profile"
+              src={
+                session
+                  ? session?.pictureUrl
+                  : 'https://source.unsplash.com/random'
+              }
+              className="mx-auto object-cover rounded-full h-10 w-10 "
+            />
+          </div>
+          <div className=" flex flex-col">
+            <span className="text-gray-600 text-lg font-medium">
+              {session ? session?.displayName : 'Charlie'}
+            </span>
+            <span className="text-gray-400 text-xs">Hero</span>
+          </div>
+        </div>
+      </div>
       <a
         href="/new"
         className="relative px-5 py-2 font-medium text-white group"
