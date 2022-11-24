@@ -19,6 +19,7 @@ export const LineLoginRoutes = () => {
     'https://warikan-generator.vercel.app/line/callback'
   );
   const state = generateRandomString();
+  console.log(state);
   const client_secret = 'bafde86582cd2ba675804f11d3092893';
   const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
 
@@ -41,8 +42,8 @@ export const LineLoginRoutes = () => {
     params.append('client_id', client_id);
     params.append('client_secret', client_secret);
 
-    console.log(state);
-    console.log(returnState);
+    console.log('lastState', state);
+    console.log('returnState', returnState);
 
     if (returnState === state) {
       axios
