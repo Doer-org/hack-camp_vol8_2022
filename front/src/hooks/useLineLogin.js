@@ -1,5 +1,5 @@
 import { generateRandomString } from './generateRandomString';
-import { isAuthenticatedState } from '../hooks/sessionStore';
+import { isAuthenticatedState } from './sessionStore';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
