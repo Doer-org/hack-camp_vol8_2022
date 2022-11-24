@@ -38,7 +38,7 @@ export const HandleProviderCallback = () => {
   console.log('state', state);
   console.log('returnState', returnState);
 
-  // [todo] 返ってきたstateのチェックをしたい
+  // TODO 返ってきたstateのチェックをしたい
   //stateが最初にリダイレクトしたものと一致しない、レンダリングで異なるurlになっている
   // if (returnState === state) {
   axios
@@ -54,6 +54,12 @@ export const HandleProviderCallback = () => {
         })
         .then((res) => {
           console.log(res.data);
+          // [todo] ログイン処理
+          // (user_idがuserテーブルに存在するかどうかで判定)
+          // なければ新規登録
+
+          // あればログイン
+          //sessionに追加
           setSession(res.data);
           navigate('/');
           // [todo] BEに送信
