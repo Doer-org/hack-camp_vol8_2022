@@ -9,15 +9,15 @@ import { RecoilRoot } from 'recoil';
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <AppContainer>
-          <RecoilRoot>
+      <RecoilRoot>
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <AppContainer>
             <AppRoutes />
-          </RecoilRoot>
-        </AppContainer>
-        <Footer />
-      </div>
+          </AppContainer>
+          <Footer />
+        </div>
+      </RecoilRoot>
     </BrowserRouter>
   );
 }
