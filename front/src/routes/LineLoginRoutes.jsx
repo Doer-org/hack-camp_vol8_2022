@@ -1,20 +1,18 @@
-import { isAuthenticatedState } from '../hooks/sessionStore';
 import {
   HandleProviderCallback,
   RedirectToProvider
 } from '../hooks/useLineLogin';
 import { LineLogin } from '../pages/LineLogin';
-import React, { useEffect } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 export const LineLoginRoutes = () => {
-  const [session] = useRecoilState(isAuthenticatedState);
-  useEffect(() => {
-    if (session) {
-      Navigate('/home');
-    }
-  }, [session]);
+  // const [session] = useRecoilState(isAuthenticatedState);
+  // useEffect(() => {
+  //   if (session) {
+  //     Navigate('/home');
+  //   }
+  // }, [session]);
 
   return (
     <Routes>

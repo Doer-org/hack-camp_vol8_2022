@@ -1,7 +1,7 @@
 import { generateRandomString } from './generateRandomString';
 import { isAuthenticatedState } from './sessionStore';
 import axios from 'axios';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 const state = generateRandomString();
@@ -22,6 +22,7 @@ export const RedirectToProvider = () => {
 
 export const HandleProviderCallback = () => {
   const [session, setSession] = useRecoilState(isAuthenticatedState);
+  const navigate = useNavigate();
 
   const [queryParameters] = useSearchParams();
   const returnCode = queryParameters.get('code');
@@ -54,6 +55,7 @@ export const HandleProviderCallback = () => {
         .then((res) => {
           console.log(res.data);
           setSession(res.data);
+          navigate('/home');
           // [todo] BEに送信
         });
     })
