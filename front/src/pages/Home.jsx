@@ -1,10 +1,4 @@
-import { isAuthenticatedState } from '../hooks/sessionStore';
-import { useRecoilState } from 'recoil';
-
 export const Home = () => {
-  const [session] = useRecoilState(isAuthenticatedState);
-
-  console.log(session);
   return (
     <div className="text-center">
       <div className="max-w-screen-2xl px-4 md:px-8 mx-auto mb-10">
@@ -20,27 +14,6 @@ export const Home = () => {
           Warikan Generator
           は、割り勘を計算し、LINEのメッセージ機能を利用することで、円滑に割り勘をし公平にお金を払うことができるツールです。
         </p>
-      </div>
-      <div className="shadow-lg rounded-2xl bg-white p-2">
-        <div className="flex-row gap-4 flex justify-center items-center">
-          <div className="flex-shrink-0">
-            <img
-              alt="profile"
-              src={
-                session
-                  ? session?.pictureUrl
-                  : 'https://source.unsplash.com/random'
-              }
-              className="mx-auto object-cover rounded-full h-10 w-10 "
-            />
-          </div>
-          <div className=" flex flex-col">
-            <span className="text-gray-600 text-lg font-medium">
-              {session ? session?.displayName : 'Charlie'}
-            </span>
-            <span className="text-gray-400 text-xs">Hero</span>
-          </div>
-        </div>
       </div>
       <a
         href="/new"

@@ -21,7 +21,7 @@ export const RedirectToProvider = () => {
 };
 
 export const HandleProviderCallback = () => {
-  const [session, setSession] = useRecoilState(isAuthenticatedState);
+  const [, setSession] = useRecoilState(isAuthenticatedState);
   const navigate = useNavigate();
 
   const [queryParameters] = useSearchParams();
