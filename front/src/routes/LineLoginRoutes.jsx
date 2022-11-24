@@ -41,6 +41,9 @@ export const LineLoginRoutes = () => {
     params.append('client_id', client_id);
     params.append('client_secret', client_secret);
 
+    console.log(state);
+    console.log(returnState);
+
     if (returnState === state) {
       axios
         .post('https://api.line.me/oauth2/v2.1/token', params)
