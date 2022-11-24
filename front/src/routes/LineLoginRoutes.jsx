@@ -59,7 +59,9 @@ export const LineLoginRoutes = () => {
         const axiosBase = require('axios');
         const axiosProfile = axiosBase.create({
           baseURL: 'https://api.line.me',
-          Authorization: `Bearer ${accessToken}`
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
         });
         console.log(axiosProfile);
 
