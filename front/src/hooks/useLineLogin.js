@@ -1,19 +1,21 @@
 import { generateRandomString } from './generateRandomString';
-import { isAuthenticatedState } from './sessionStore';
+import { isAuthenticatedState, lineState } from './sessionStore';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
-const state = generateRandomString();
 //この辺はenvファイルに書いたほうがいいかも
 const client_id = '1657672330';
 const redirect_uri = encodeURI(
   'https://warikan-generator.vercel.app/line/callback'
 );
 const client_secret = 'bafde86582cd2ba675804f11d3092893';
-const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
 
 export const RedirectToProvider = () => {
+  const [, setLineState] = useRecoilState(lineState);
+  setLineState(generateRandomString());
+  const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
+
   // 👇️ redirect to external URL
   window.location.replace(url);
 

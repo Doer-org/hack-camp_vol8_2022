@@ -10,3 +10,8 @@ export const isAuthenticatedState = atom({
   default: null,
   effects_UNSTABLE: [persistAtom]
 });
+
+export const lineState = atom({
+  key: 'lineState',
+  default: null
+});
