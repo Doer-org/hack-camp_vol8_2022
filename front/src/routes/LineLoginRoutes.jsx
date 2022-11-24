@@ -45,16 +45,17 @@ export const LineLoginRoutes = () => {
     axios
       .post('https://api.line.me/oauth2/v2.1/token', params)
       .then((res) => {
-        const accessToken = res.data.access_token;
-        // const refreshToken = response.data.refresh_token;
-        // const expiresIn = response.data.expires_in;
+        console.log(res.data);
+        // const accessToken = res.data.access_token;
+        // // const refreshToken = response.data.refresh_token;
+        // // const expiresIn = response.data.expires_in;
 
-        var params = new URLSearchParams();
-        params.append('Authorization', `Bearer ${accessToken}`);
+        // var params = new URLSearchParams();
+        // params.append('Authorization', `Bearer ${accessToken}`);
 
-        axios.get('https://api.line.me/v2/profile', { params }).then((res) => {
-          console.log(res.data);
-        });
+        // axios.get('https://api.line.me/v2/profile', { params }).then((res) => {
+        //   console.log(res.data);
+        // });
       })
       .catch((error) => {
         console.log(error);
