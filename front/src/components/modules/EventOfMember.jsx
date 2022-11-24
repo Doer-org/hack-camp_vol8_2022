@@ -1,8 +1,14 @@
 import React from 'react';
 
 export const EventOfMember = ({ id }) => {
+  //BEからイベント情報を取得する
+  const eventName = 'イベント名';
+
   return (
     <>
+      <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">
+        {eventName} 詳細画面
+      </h2>
       <div className="bg-pink-600 mt-10">
         <div className="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between flex-wrap">
@@ -43,7 +49,6 @@ export const EventOfMember = ({ id }) => {
             </div>
             <div className=" flex flex-col">
               <span className="text-gray-600 text-lg font-medium">Charlie</span>
-              <span className="text-gray-400 text-xs">Hero</span>
             </div>
           </div>
         </div>
