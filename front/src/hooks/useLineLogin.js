@@ -10,12 +10,11 @@ const redirect_uri = encodeURI(
   'https://warikan-generator.vercel.app/line/callback'
 );
 const client_secret = 'bafde86582cd2ba675804f11d3092893';
+const [state, setLineState] = useRecoilState(lineState);
+setLineState(generateRandomString());
+const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
 
 export const RedirectToProvider = () => {
-  const [state, setLineState] = useRecoilState(lineState);
-  setLineState(generateRandomString());
-  const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
-
   // 👇️ redirect to external URL
   window.location.replace(url);
 
@@ -23,7 +22,6 @@ export const RedirectToProvider = () => {
 };
 
 export const HandleProviderCallback = () => {
-  const [state] = useRecoilState(lineState);
   const [, setSession] = useRecoilState(isAuthenticatedState);
   const navigate = useNavigate();
 
