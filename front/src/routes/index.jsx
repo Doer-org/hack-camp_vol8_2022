@@ -7,5 +7,5 @@ import { useRecoilState } from 'recoil';
 export const AppRoutes = () => {
   const [session] = useRecoilState(isAuthenticatedState);
 
-  return <>{!session ? <ProtectedRoutes /> : <LineLoginRoutes />}</>;
+  return <>{session ? <ProtectedRoutes /> : <LineLoginRoutes />}</>;
 };
