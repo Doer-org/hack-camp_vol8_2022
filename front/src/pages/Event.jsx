@@ -10,6 +10,6 @@ export const Event = () => {
 
   if (isAdmin)
     return (
-      <>{!isAdmin ? <EventOfAdmin id={id} /> : <EventOfMember id={id} />}</>
+      <>{isAdmin ? <EventOfAdmin id={id} /> : <EventOfMember id={id} />}</>
     );
 };
