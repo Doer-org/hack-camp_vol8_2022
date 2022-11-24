@@ -6,6 +6,13 @@ import { Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 const state = generateRandomString();
+const client_id = '1657672330';
+const redirect_uri = encodeURI(
+  'https://warikan-generator.vercel.app/line/callback'
+);
+
+const client_secret = 'bafde86582cd2ba675804f11d3092893';
+const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
 
 export const LineLoginRoutes = () => {
   const [session] = useRecoilState(isAuthenticatedState);
@@ -15,14 +22,7 @@ export const LineLoginRoutes = () => {
       navigate('/home');
     }
   }, [session]);
-
-  const client_id = '1657672330';
-  const redirect_uri = encodeURI(
-    'https://warikan-generator.vercel.app/line/callback'
-  );
-
-  const client_secret = 'bafde86582cd2ba675804f11d3092893';
-  const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
+  console.log('url', url);
 
   function RedirectToProvider() {
     // 👇️ redirect to external URL
