@@ -22,10 +22,11 @@ export const LineLoginRoutes = () => {
   console.log(state);
   const client_secret = 'bafde86582cd2ba675804f11d3092893';
   const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
-  console.log('url:', url);
 
   function RedirectToProvider() {
     // 👇️ redirect to external URL
+    console.log('url:', url);
+
     window.location.replace(url);
 
     return null;
