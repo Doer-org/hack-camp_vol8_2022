@@ -1,9 +1,11 @@
 import { generateRandomString } from '../hooks/generateRandomString';
 import { isAuthenticatedState } from '../hooks/sessionStore';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+
+const state = generateRandomString();
 
 export const LineLoginRoutes = () => {
   const [session] = useRecoilState(isAuthenticatedState);
@@ -18,18 +20,12 @@ export const LineLoginRoutes = () => {
   const redirect_uri = encodeURI(
     'https://warikan-generator.vercel.app/line/callback'
   );
-  const client_secret = 'bafde86582cd2ba675804f11d3092893';
 
-  const [state, setState] = useState('');
-  var temp;
-  // const state = generateRandomString();
+  const client_secret = 'bafde86582cd2ba675804f11d3092893';
+  const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
 
   function RedirectToProvider() {
-    temp = generateRandomString();
-    setState(temp);
-    const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
-    console.log(url);
-
+    // 👇️ redirect to external URL
     window.location.replace(url);
 
     return null;
@@ -47,10 +43,10 @@ export const LineLoginRoutes = () => {
     params.append('client_id', client_id);
     params.append('client_secret', client_secret);
 
-    console.log('lastState', temp);
+    console.log('lastState', state);
     console.log('returnState', returnState);
 
-    if (returnState === temp) {
+    if (returnState === state) {
       axios
         .post('https://api.line.me/oauth2/v2.1/token', params)
         .then((res) => {
