@@ -13,8 +13,6 @@ const redirect_uri = encodeURI(
 const client_secret = 'bafde86582cd2ba675804f11d3092893';
 const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
 
-const [session, setSession] = useRecoilState(isAuthenticatedState);
-
 export const RedirectToProvider = () => {
   // 👇️ redirect to external URL
   window.location.replace(url);
@@ -23,6 +21,8 @@ export const RedirectToProvider = () => {
 };
 
 export const HandleProviderCallback = () => {
+  const [session, setSession] = useRecoilState(isAuthenticatedState);
+
   const [queryParameters] = useSearchParams();
   const returnCode = queryParameters.get('code');
   const returnState = queryParameters.get('state');
