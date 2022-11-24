@@ -1,11 +1,10 @@
 import { isAuthenticatedState } from './sessionStore';
 import { useRecoilState } from 'recoil';
 
-const [session] = useRecoilState(isAuthenticatedState);
-
-console.log(session);
-
 export const Home = () => {
+  const [session] = useRecoilState(isAuthenticatedState);
+
+  console.log(session);
   return (
     <div className="text-center">
       <div className="max-w-screen-2xl px-4 md:px-8 mx-auto mb-10">
