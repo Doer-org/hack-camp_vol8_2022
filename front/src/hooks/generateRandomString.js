@@ -6,4 +6,4 @@ export const generateRandomString = useCallback(() => {
   return Array.from(Array(N))
     .map(() => S[Math.floor(Math.random() * S.length)])
     .join('');
-});
+}, []);
