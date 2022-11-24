@@ -41,32 +41,34 @@ export const LineLoginRoutes = () => {
     params.append('client_id', client_id);
     params.append('client_secret', client_secret);
 
-    // if (returnState === state) {
-    axios.post('https://api.line.me/oauth2/v2.1/token', params).then((res) => {
-      const accessToken = res.data.access_token;
-      // const refreshToken = response.data.refresh_token;
-      // const expiresIn = response.data.expires_in;
-
-      // var params = new URLSearchParams();
-      // params.append('Authorization', `Bearer ${accessToken}`);
-
-      // axios.get('https://api.line.me/v2/profile', { params }).then((res) => {
-      //   console.log(res.data);
-      // });
+    if (returnState === state) {
       axios
-        .get('https://api.line.me/v2/profile', {
-          headers: {
-            Authorization: `Bearer ${accessToken}`
-          }
-        })
+        .post('https://api.line.me/oauth2/v2.1/token', params)
         .then((res) => {
-          console.log(res.data);
+          const accessToken = res.data.access_token;
+          // const refreshToken = response.data.refresh_token;
+          // const expiresIn = response.data.expires_in;
+
+          // var params = new URLSearchParams();
+          // params.append('Authorization', `Bearer ${accessToken}`);
+
+          // axios.get('https://api.line.me/v2/profile', { params }).then((res) => {
+          //   console.log(res.data);
+          // });
+          axios
+            .get('https://api.line.me/v2/profile', {
+              headers: {
+                Authorization: `Bearer ${accessToken}`
+              }
+            })
+            .then((res) => {
+              console.log(res.data);
+            });
+        })
+        .catch((error) => {
+          console.log(error);
         });
-    });
-    // .catch((error) => {
-    //   console.log(error);
-    // });
-    // }
+    }
   }
 
   return (
