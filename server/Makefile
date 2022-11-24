@@ -2,16 +2,14 @@
 .DEFAULT_GOAL := help
 
 # env
-ENV_LOCAL_FILE := .env.local
+ENV_LOCAL_FILE := ./docker/docker-compose.env
 ENV_LOCAL = $(shell cat $(ENV_LOCAL_FILE))
 
 # docker
 DOCKER_FILE_DIR:=./docker
-DOCKER_COMPOSE_BASE:=$(DOCKER_FILE_DIR)/docker-compose.base.yml
-DOCKER_COMPOSE_DEV_DB:=$(DOCKER_FILE_DIR)/docker-compose.dev.db.yml
-DOCKER_COMPOSE_DEV_SERVER:=$(DOCKER_FILE_DIR)/docker-compose.dev.server.yml
+DOCKER_COMPOSE_BASE:=$(DOCKER_FILE_DIR)/docker-compose.yml
 DOCKER_EXEC:=docker exec -it
-DB_CONTAINER_NAME:=db_go-mysql-ca
+DB_CONTAINER_NAME:=hackcamp_vol8_2022_db
 
 # dir
 SRC_DIR:=./src
@@ -24,17 +22,13 @@ RM:=rm -rf
 
 .PHONY: up
 up: ## docker環境を立ち上げる
-	$(ENV_LOCAL) docker-compose \
-	-f $(DOCKER_COMPOSE_BASE) \
-	-f $(DOCKER_COMPOSE_DEV_DB) \
-	-f $(DOCKER_COMPOSE_DEV_SERVER) up
+	$(ENV_LOCAL) docker compose \
+	-f $(DOCKER_COMPOSE_BASE) up
 
 .PHONY: down
 down: ## dockerイメージを削除し、docker環境を閉じる
 	docker-compose \
-	-f $(DOCKER_COMPOSE_BASE) \
-	-f $(DOCKER_COMPOSE_DEV_DB) \
-	-f $(DOCKER_COMPOSE_DEV_SERVER) down \
+	-f $(DOCKER_COMPOSE_BASE) down \
 	--rmi all --volumes --remove-orphans
 
 .PHONY: fclean
@@ -54,10 +48,6 @@ del-data:
 .PHONY: attach-db
 attach-db: ## dockerのdbコンテナにアクセスする
 	$(DOCKER_EXEC) $(DB_CONTAINER_NAME) bash
-
-.PHONY: lint
-lint: ## goのコードを整形する
-	cd $(SRC_DIR) && gofmt -l -w .
 
 .PHONY: help
 help: ## コマンドの一覧を標示する
