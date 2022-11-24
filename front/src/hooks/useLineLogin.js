@@ -12,7 +12,7 @@ const redirect_uri = encodeURI(
 const client_secret = 'bafde86582cd2ba675804f11d3092893';
 
 export const RedirectToProvider = () => {
-  const [, setLineState] = useRecoilState(lineState);
+  const [state, setLineState] = useRecoilState(lineState);
   setLineState(generateRandomString());
   const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
 
@@ -23,12 +23,16 @@ export const RedirectToProvider = () => {
 };
 
 export const HandleProviderCallback = () => {
+  const [state] = useRecoilState(lineState);
   const [, setSession] = useRecoilState(isAuthenticatedState);
   const navigate = useNavigate();
 
   const [queryParameters] = useSearchParams();
   const returnCode = queryParameters.get('code');
   const returnState = queryParameters.get('state');
+
+  console.log(state);
+  console.log(returnState);
 
   var params = new URLSearchParams();
   params.append('grant_type', 'authorization_code');
