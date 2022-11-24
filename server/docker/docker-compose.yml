@@ -5,7 +5,7 @@ services:
     build:
       context: ../src
       dockerfile: Dockerfile
-    container_name: flask_user-crud_server
+    container_name: hackcamp_vol8_2022_server
     env_file:
       - docker-compose.env
     ports:
@@ -18,7 +18,7 @@ services:
       - db
 
   db:
-    container_name: flask_user-crud_db
+    container_name: hackcamp_vol8_2022_db
     build:
       context: ../db
       dockerfile: Dockerfile

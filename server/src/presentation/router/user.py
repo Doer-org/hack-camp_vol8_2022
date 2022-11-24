@@ -1,5 +1,6 @@
-from config.db.session import session
 from flask import Blueprint
+
+from config.db.session import session
 from presentation.controller.user import UserController
 from repository.user import UserRepository
 from service.user import UserService
@@ -18,11 +19,11 @@ def get(id):
     return __c.get(id)
 
 
-@api.route("/user/all", methods=["GET"])
-def get_all():
-    return __c.get_all()
+# @api.route("/user/all", methods=["GET"])
+# def get_all():
+#     return __c.get_all()
 
 
-@api.route("/user", methods=["POST"])
-def create():
-    return __c.create()
+# @api.route("/user", methods=["POST"])
+# def create():
+#     return __c.create()

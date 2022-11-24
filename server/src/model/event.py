@@ -1,15 +1,20 @@
-# eventテーブル
+from model.status import Status
+
+
+# Eventテーブル
 class Event:
     def __init__(
         self,
+        id: int,
         name: str,
-        created_at: timestamp,
-        sum_price: int,
+        admin_id: int,
+        total_amount: int,
         number: int,
-        id: int = None,
+        created_at,  #: timestamp, 型
     ):
         self.id = id
         self.name = name
-        self.created_at = created_at
-        self.sum_price = sum_price
+        self.admin_id = admin_id
+        self.total_amount = total_amount
         self.number = number
+        self.created_at = created_at
