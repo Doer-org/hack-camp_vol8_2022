@@ -11,7 +11,7 @@ export const Header = () => {
           <PeaceIcon />
           Warikan Generator
         </div>
-        <div className="shadow-lg rounded-2xl bg-white p-2 mr-2 ml-auto md:ml-20">
+        <div className="shadow-lg rounded-2xl bg-white p-2 mr-4 ml-auto md:ml-20">
           <div className="flex items-center">
             <img
               alt="profile"

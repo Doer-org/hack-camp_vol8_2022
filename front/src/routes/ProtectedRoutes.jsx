@@ -9,7 +9,7 @@ import { Routes, Route } from 'react-router-dom';
 export const ProtectedRoutes = () => {
   return (
     <Routes>
-      <Route path="home" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="new" element={<CreateEvent />} />
       <Route path="new/complete" element={<CompleteCreateEvent />} />
       <Route path="event/:id" element={<Event />} />
