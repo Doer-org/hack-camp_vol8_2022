@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 
 const state = generateRandomString();
+//この辺はenvファイルに書いたほうがいいかも
 const client_id = '1657672330';
 const redirect_uri = encodeURI(
   'https://warikan-generator.vercel.app/line/callback'
@@ -29,7 +30,7 @@ export const HandleProviderCallback = () => {
   params.append('client_id', client_id);
   params.append('client_secret', client_secret);
 
-  // [todo] stateのチェックをしたい
+  // [todo] 返ってきたstateのチェックをしたい
   //stateが最初にリダイレクトしたものと一致しない、レンダリングで異なるurlになっている
   // if (returnState === state) {
   axios
@@ -45,6 +46,7 @@ export const HandleProviderCallback = () => {
         })
         .then((res) => {
           console.log(res.data);
+          // [todo] BEに送信
         });
     })
     .catch((error) => {
