@@ -26,7 +26,8 @@ export const LineLoginRoutes = () => {
 
   function RedirectToProvider() {
     // 👇️ redirect to external URL
-    window.location.replace(url);
+    // window.location.replace(url);
+    console.log(url);
 
     return null;
   }
