@@ -1,6 +1,7 @@
+import { generateRandomString } from '../hooks/generateRandomString';
 import { isAuthenticatedState } from '../hooks/sessionStore';
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
@@ -17,14 +18,15 @@ export const LineLoginRoutes = () => {
   const redirect_uri = encodeURI(
     'https://warikan-generator.vercel.app/line/callback'
   );
-  // const state = generateRandomString();
-  const state = 123456789;
-  console.log(state);
   const client_secret = 'bafde86582cd2ba675804f11d3092893';
-  const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
+
+  const [state, setState] = useState('');
+  // const state = generateRandomString();
 
   function RedirectToProvider() {
-    // 👇️ redirect to external URL
+    setState(generateRandomString());
+    const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
+
     window.location.replace(url);
 
     return null;
