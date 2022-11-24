@@ -31,19 +31,37 @@ export const LineLoginRoutes = () => {
 
   function HandleProviderCallback() {
     const [queryParameters] = useSearchParams();
-    const code = queryParameters.get('code');
-    const state = queryParameters.get('state');
+    const returnCode = queryParameters.get('code');
+    const returnState = queryParameters.get('state');
 
     var params = new URLSearchParams();
     params.append('grant_type', 'authorization_code');
-    params.append('code', code);
+    params.append('code', returnCode);
     params.append('redirect_uri', redirect_uri);
     params.append('client_id', client_id);
     params.append('client_secret', client_secret);
 
-    axios.post('https://api.line.me/oauth2/v2.1/token', params).then((res) => {
-      console.log(res.data);
-    });
+    if (returnState === state) {
+      axios
+        .post('https://api.line.me/oauth2/v2.1/token', params)
+        .then((res) => {
+          const accessToken = res.data.access_token;
+          // const refreshToken = response.data.refresh_token;
+          // const expiresIn = response.data.expires_in;
+
+          var params = new URLSearchParams();
+          params.append('Authorization', `Bearer ${accessToken}`);
+
+          axios
+            .get('https://api.line.me/v2/profile', { params })
+            .then((res) => {
+              console.log(res.data);
+            });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
 
   return (
