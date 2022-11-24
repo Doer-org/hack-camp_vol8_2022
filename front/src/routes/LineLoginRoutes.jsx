@@ -46,9 +46,9 @@ export const LineLoginRoutes = () => {
       .post('https://api.line.me/oauth2/v2.1/token', params)
       .then((res) => {
         console.log(res.data);
-        // const accessToken = res.data.access_token;
-        // // const refreshToken = response.data.refresh_token;
-        // // const expiresIn = response.data.expires_in;
+        const accessToken = res.data.access_token;
+        // const refreshToken = response.data.refresh_token;
+        // const expiresIn = response.data.expires_in;
 
         // var params = new URLSearchParams();
         // params.append('Authorization', `Bearer ${accessToken}`);
@@ -56,6 +56,16 @@ export const LineLoginRoutes = () => {
         // axios.get('https://api.line.me/v2/profile', { params }).then((res) => {
         //   console.log(res.data);
         // });
+
+        const axiosBase = require('axios');
+        const axiosProfile = axiosBase.create({
+          baseURL: 'https://api.line.me', // バックエンドB のURL:port を指定する
+          Authorization: `Bearer ${accessToken}`
+        });
+
+        axiosProfile.get('/v2/profile').then((res) => {
+          console.log(res.data);
+        });
       })
       .catch((error) => {
         console.log(error);
