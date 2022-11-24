@@ -15,7 +15,7 @@ export const NotFound = () => {
       </p>
 
       <LinkButton
-        path="/home"
+        path="/"
         label="Go back home"
         color="bg-purple-600 hover:bg-purple-700 text-white"
       />

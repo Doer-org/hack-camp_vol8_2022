@@ -7,13 +7,6 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 export const LineLoginRoutes = () => {
-  // const [session] = useRecoilState(isAuthenticatedState);
-  // useEffect(() => {
-  //   if (session) {
-  //     Navigate('/home');
-  //   }
-  // }, [session]);
-
   return (
     <Routes>
       <Route path="/" element={<LineLogin />} />

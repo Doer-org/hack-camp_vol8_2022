@@ -55,7 +55,7 @@ export const HandleProviderCallback = () => {
         .then((res) => {
           console.log(res.data);
           setSession(res.data);
-          navigate('/home');
+          navigate('/');
           // [todo] BEに送信
         });
     })
