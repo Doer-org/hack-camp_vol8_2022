@@ -21,11 +21,14 @@ export const LineLoginRoutes = () => {
   const client_secret = 'bafde86582cd2ba675804f11d3092893';
 
   const [state, setState] = useState('');
+  var temp;
   // const state = generateRandomString();
 
   function RedirectToProvider() {
-    setState(generateRandomString());
+    temp = generateRandomString();
+    setState(temp);
     const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
+    console.log(url);
 
     window.location.replace(url);
 
@@ -44,10 +47,10 @@ export const LineLoginRoutes = () => {
     params.append('client_id', client_id);
     params.append('client_secret', client_secret);
 
-    console.log('lastState', state);
+    console.log('lastState', temp);
     console.log('returnState', returnState);
 
-    if (returnState === state) {
+    if (returnState === temp) {
       axios
         .post('https://api.line.me/oauth2/v2.1/token', params)
         .then((res) => {
