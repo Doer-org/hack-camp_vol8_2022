@@ -1,3 +1,10 @@
+import { isAuthenticatedState } from './sessionStore';
+import { useRecoilState } from 'recoil';
+
+const [session] = useRecoilState(isAuthenticatedState);
+
+console.log(session);
+
 export const Home = () => {
   return (
     <div className="text-center">
