@@ -13,6 +13,7 @@ export const LineLoginRoutes = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (session) {
+      console.log('session', session);
       navigate('/home');
     }
   }, [session]);
