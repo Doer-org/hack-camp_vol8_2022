@@ -1,7 +1,3 @@
-from event import Event
-from user import User
-
-
 # statusオブジェクト
 class Status:
     def __init__(

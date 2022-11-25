@@ -24,6 +24,6 @@ def get(id):
 #     return __c.get_all()
 
 
-# @api.route("/user", methods=["POST"])
-# def create():
-#     return __c.create()
+@api.route("/user", methods=["POST"])
+def create():
+    return __c.create()
