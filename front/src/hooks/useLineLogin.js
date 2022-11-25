@@ -20,7 +20,7 @@ export const RedirectToProvider = () => {
   return null;
 };
 
-export const HandleProviderCallback = () => {
+export const HandleProviderCallback = ({ location }) => {
   const [, setSession] = useRecoilState(isAuthenticatedState);
   const navigate = useNavigate();
 
@@ -61,7 +61,7 @@ export const HandleProviderCallback = () => {
       // あればログイン
       //sessionに追加
       setSession(profile.data);
-      navigate('/');
+      location ? navigate(location) : navigate('/');
       //[todo] BEに送信
     } catch (error) {
       console.log(error);
