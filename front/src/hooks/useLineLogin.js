@@ -20,7 +20,7 @@ export const RedirectToProvider = () => {
   return null;
 };
 
-export const HandleProviderCallback = async () => {
+export const HandleProviderCallback = () => {
   const [, setSession] = useRecoilState(isAuthenticatedState);
   const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ export const HandleProviderCallback = async () => {
   //stateが最初にリダイレクトしたものと一致しない、レンダリングで異なるurlになっている
   // if (returnState === state)
 
-  async function getLineProfile() {
+  const getLineProfile = async () => {
     const response = await axios.post(
       'https://api.line.me/oauth2/v2.1/token',
       params
@@ -56,7 +56,7 @@ export const HandleProviderCallback = async () => {
     console.log(profile.data);
     setSession(profile.data);
     navigate('/');
-  }
+  };
   getLineProfile();
 
   // axios
