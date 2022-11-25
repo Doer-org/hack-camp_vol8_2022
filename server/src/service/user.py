@@ -17,11 +17,11 @@ class UserService:
     # def get_all(self) -> Tuple[list, Error]:
     #     return self.__repository.get_all()
 
-    # def create(self, u: User) -> Tuple[User, Error]:
-    #     if u.display_name == "":
-    #         return None, Error(msg="display_name is empty")
-    #     if u.line_id == 0:
-    #         return None, Error(msg="line_id is empty")
-    #     if u.picture_url == 0:
-    #         return None, Error(msg="picture_url is empty")
-    #     return self.__repository.create(u)
+    def create(self, u: User) -> Tuple[User, Error]:
+         if u.display_name == "":
+             return None, Error(msg="display_name is empty")
+         if u.line_id == "":
+             return None, Error(msg="line_id is empty")
+         if u.picture_url == "":
+             return None, Error(msg="picture_url is empty")
+         return self.__repository.create(u)

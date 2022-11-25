@@ -33,15 +33,16 @@ class UserRepository:
     #     return dtos_to_users(dtos), None
 
     # # user情報を保存する
-    # def create(self, u: User) -> Tuple[User, Error]:
-    #     dto = UserDto()
-    #     dto.name = u.name
-    #     dto.age = u.age
+    def create(self, u: User) -> Tuple[User, Error]:
+        dto = UserDto()
+        dto.display_name = u.display_name
+        dto.line_id = u.line_id
+        dto.picture_url = u.picture_url
 
-    #     self.__session.add(dto)
-    #     self.__session.commit()
+        self.__session.add(dto)
+        self.__session.commit()
 
-    #     return u, None
+        return u, None
 
 
 class UserDto(Base):

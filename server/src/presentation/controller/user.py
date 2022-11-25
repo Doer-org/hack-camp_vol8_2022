@@ -24,15 +24,15 @@ class UserController:
     #     usJson = models_to_jsons(users)
     #     return jsonify({"users": usJson})
 
-    # def create(self) -> dict:
-    #     j = request.get_json()
-    #     u = json_to_model(j)
-    #     user, err = self.__service.create(u)
-    #     if err != None:
-    #         return err.create_resp()
+    def create(self) -> dict:
+        j = request.get_json()
+        u = json_to_model(j)
+        user, err = self.__service.create(u)
+        if err != None:
+            return err.create_resp()
 
-    #     uJson = model_to_json(user)
-    #     return uJson
+        uJson = model_to_json(user)
+        return uJson
 
 
 def model_to_json(u: User) -> dict:
@@ -53,6 +53,7 @@ def models_to_jsons(us: list) -> list:
 
 def json_to_model(j: dict) -> User:
     return User(
+        id = None,
         display_name=j["display_name"],
         line_id=j["line_id"],
         picture_url=j["picture_url"],
