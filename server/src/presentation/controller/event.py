@@ -1,6 +1,6 @@
 from flask import jsonify, request
-
 from model.event import Event
+from presentation.controller.participant import participants_to_jsons
 from service.event import EventService
 
 
@@ -13,7 +13,8 @@ class EventController:
         if err != None:
             return err.create_resp()
 
-        eJson = model_to_json(event)
+        eJson = event_to_json(event)
+        print(eJson)
         return eJson
 
     # def get_all(self) -> dict:
@@ -26,38 +27,32 @@ class EventController:
 
     def create(self) -> dict:
         j = request.get_json()
-        e = json_to_model(j)
+        e = json_to_event(j)
         event, err = self.__service.create(e)
         if err != None:
             return err.create_resp()
 
-        eJson = model_to_json(event)
+        eJson = event_to_json(event)
         return eJson
 
 
-def model_to_json(e: Event) -> dict:
+def event_to_json(e: Event) -> dict:
     return {
         "id": e.id,
         "name": e.name,
         "number": e.number,
         "total_amount": e.total_amount,
         "admin_id": e.admin_id,
+        "participants": participants_to_jsons(e.participants),
     }
 
 
-def models_to_jsons(es: list) -> list:
-    esJson = []
-    for e in es:
-        esJson.append(model_to_json(e))
-    return esJson
-
-
-def json_to_model(j: dict) -> Event:
+def json_to_event(j: dict) -> Event:
     return Event(
         name=j["name"],
         number=j["number"],
         total_amount=j["total_amount"],
         admin_id=j["admin_id"],
         id=None,
-        created_at=None
+        created_at=None,
     )  # TODO なかった時key errorになるので直す
