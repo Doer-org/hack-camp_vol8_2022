@@ -41,6 +41,7 @@ def model_to_json(e: Event) -> dict:
         "name": e.name,
         "number": e.number,
         "total_amount": e.total_amount,
+        "admin_id": e.admin_id,
     }
 
 
@@ -56,4 +57,7 @@ def json_to_model(j: dict) -> Event:
         name=j["name"],
         number=j["number"],
         total_amount=j["total_amount"],
+        admin_id=j["admin_id"],
+        id=None,
+        created_at=None
     )  # TODO なかった時key errorになるので直す

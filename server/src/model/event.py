@@ -11,6 +11,7 @@ class Event:
         total_amount: int,
         number: int,
         created_at,  #: timestamp, 型
+        participants: list
     ):
         self.id = id
         self.name = name
