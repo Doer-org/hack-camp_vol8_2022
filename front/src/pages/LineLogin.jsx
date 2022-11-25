@@ -1,17 +1,19 @@
-import { LinkButton } from '../components/atoms/LinkButton';
+import picture from '../Images/line_button.png';
+import { useLocation } from 'react-router-dom';
 
-export const LineLogin = () => {
+export const LineLogin = ({ setState }) => {
+  const path = useLocation().pathname;
+  setState(path);
+
   return (
     <div className="mt-10 text-center">
       <h1 className="text-gray-800 text-2xl md:text-3xl font-bold text-center mb-10">
         ログイン画面
       </h1>
 
-      <LinkButton
-        path="/login"
-        label="LINEログイン"
-        color="hover:bg-green-700 text-white bg-green-500"
-      />
+      <a href="/login" className="w-32 inline-block">
+        <img src={picture} alt="LINEログイン" className="w-32 mx-auto" />
+      </a>
     </div>
   );
 };

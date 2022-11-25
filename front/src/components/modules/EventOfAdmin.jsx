@@ -2,13 +2,14 @@ import { BaseButton } from '.././atoms/BaseButton';
 
 export const EventOfAdmin = ({ id }) => {
   //BEからイベント情報を取得する
+  const eventId = id;
   const eventName = 'イベント名';
   const sum = 5;
   const remain = 2;
   return (
     <>
       <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">
-        {eventName} 詳細画面
+        {eventName} 詳細画面 {eventId}
       </h2>
 
       <div className="text-center font-bold my-5">
