@@ -43,47 +43,29 @@ export const HandleProviderCallback = () => {
   // if (returnState === state)
 
   const getLineProfile = async () => {
-    const response = await axios.post(
-      'https://api.line.me/oauth2/v2.1/token',
-      params
-    );
-    const { access_token } = response.data;
-    const profile = await axios.get('https://api.line.me/v2/profile', {
-      headers: {
-        Authorization: `Bearer ${access_token}`
-      }
-    });
-    console.log(profile.data);
-    setSession(profile.data);
-    navigate('/');
+    try {
+      const response = await axios.post(
+        'https://api.line.me/oauth2/v2.1/token',
+        params
+      );
+      const { access_token } = response.data;
+      const profile = await axios.get('https://api.line.me/v2/profile', {
+        headers: {
+          Authorization: `Bearer ${access_token}`
+        }
+      });
+      //[todo] ログイン処理
+      // (user_idがuserテーブルに存在するかどうかで判定)
+      // なければ新規登録
+
+      // あればログイン
+      //sessionに追加
+      setSession(profile.data);
+      navigate('/');
+      //[todo] BEに送信
+    } catch (error) {
+      console.log(error);
+    }
   };
   getLineProfile();
-
-  // axios
-  //   .post('https://api.line.me/oauth2/v2.1/token', params)
-  //   .then((res) => {
-  //     console.log(res);
-  //     const accessToken = res.data.access_token;
-  //     axios
-  //       .get('https://api.line.me/v2/profile', {
-  //         headers: {
-  //           Authorization: `Bearer ${accessToken}`
-  //         }
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data);
-  //         // [todo] ログイン処理
-  //         // (user_idがuserテーブルに存在するかどうかで判定)
-  //         // なければ新規登録
-
-  //         // あればログイン
-  //         //sessionに追加
-  //         setSession(res.data);
-  //         navigate('/');
-  //         // [todo] BEに送信
-  //       });
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
 };
