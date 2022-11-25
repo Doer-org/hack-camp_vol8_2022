@@ -14,7 +14,7 @@ export const LineLoginRoutes = () => {
       <Route path="/login" element={<RedirectToProvider />} />
       <Route
         path="/line/callback"
-        element={<HandleProviderCallback location={location.pathName} />}
+        element={<HandleProviderCallback location={location.pathname} />}
       />
       <Route path="*" element={<LineLogin />} />
     </Routes>
