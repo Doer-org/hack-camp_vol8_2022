@@ -8,6 +8,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 
 export const LineLoginRoutes = () => {
   const location = useLocation();
+  console.log(location);
   return (
     <Routes>
       <Route path="/" element={<LineLogin />} />
