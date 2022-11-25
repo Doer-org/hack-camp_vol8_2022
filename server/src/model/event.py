@@ -11,7 +11,7 @@ class Event:
         total_amount: int,
         number: int,
         created_at,  #: timestamp, 型
-        participants: list
+        participants: list,
     ):
         self.id = id
         self.name = name
@@ -19,3 +19,4 @@ class Event:
         self.total_amount = total_amount
         self.number = number
         self.created_at = created_at
+        self.participants = participants

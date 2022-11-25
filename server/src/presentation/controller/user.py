@@ -1,5 +1,4 @@
 from flask import jsonify, request
-
 from model.user import User
 from service.user import UserService
 
@@ -13,7 +12,7 @@ class UserController:
         if err != None:
             return err.create_resp()
 
-        uJson = model_to_json(user)
+        uJson = user_to_json(user)
         return uJson
 
     # def get_all(self) -> dict:
@@ -26,16 +25,16 @@ class UserController:
 
     def create(self) -> dict:
         j = request.get_json()
-        u = json_to_model(j)
+        u = json_to_user(j)
         user, err = self.__service.create(u)
         if err != None:
             return err.create_resp()
 
-        uJson = model_to_json(user)
+        uJson = user_to_json(user)
         return uJson
 
 
-def model_to_json(u: User) -> dict:
+def user_to_json(u: User) -> dict:
     return {
         "id": u.id,
         "display_name": u.display_name,
@@ -44,16 +43,9 @@ def model_to_json(u: User) -> dict:
     }
 
 
-def models_to_jsons(us: list) -> list:
-    usJson = []
-    for u in us:
-        usJson.append(model_to_json(u))
-    return usJson
-
-
-def json_to_model(j: dict) -> User:
+def json_to_user(j: dict) -> User:
     return User(
-        id = None,
+        id=None,
         display_name=j["display_name"],
         line_id=j["line_id"],
         picture_url=j["picture_url"],
