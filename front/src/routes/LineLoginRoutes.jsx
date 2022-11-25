@@ -8,14 +8,13 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 
 export const LineLoginRoutes = () => {
   const location = useLocation();
-  console.log(location);
   return (
     <Routes>
       <Route path="/" element={<LineLogin />} />
       <Route path="/login" element={<RedirectToProvider />} />
       <Route
         path="/line/callback"
-        element={<HandleProviderCallback location={location} />}
+        element={<HandleProviderCallback location={location.pathName} />}
       />
       <Route path="*" element={<LineLogin />} />
     </Routes>
