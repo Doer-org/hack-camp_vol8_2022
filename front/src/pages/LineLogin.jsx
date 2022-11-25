@@ -1,9 +1,12 @@
 import picture from '../Images/line_button.png';
+import { redirect_path } from '../hooks/sessionStore';
 import { useLocation } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 
-export const LineLogin = ({ setState }) => {
-  const path = useLocation().pathname;
-  setState(path);
+export const LineLogin = () => {
+  const [, setPath] = useRecoilState(redirect_path);
+  const pathname = useLocation().pathname;
+  setPath(pathname);
 
   return (
     <div className="mt-10 text-center">
