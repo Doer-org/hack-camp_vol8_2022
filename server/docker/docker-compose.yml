@@ -1,30 +1,33 @@
 version: "3"
+
 services:
   server:
     build:
-      context: ./src
+      context: ../src
       dockerfile: Dockerfile
-    container_name: flask-server
+    container_name: hackcamp_vol8_2022_server
     env_file:
       - docker-compose.env
     ports:
       - 8000:8000
     tty: true
+    restart: always
     volumes:
-      - ./src:/root/src
+      - ../src:/root/src
     depends_on:
       - db
 
   db:
-    container_name: psql-db
+    container_name: hackcamp_vol8_2022_db
     build:
-      context: ./db
+      context: ../db
       dockerfile: Dockerfile
     ports:
       - 5432:5432
     volumes:
-      - ./db/init:/docker-entrypoint-initdb.d
-      - ./db/data:/var/lib/postgresql/data
+      - ../db/init:/docker-entrypoint-initdb.d
+      - ../db/data:/var/lib/postgresql/data
     env_file:
       - docker-compose.env
+    tty: true
     restart: always
