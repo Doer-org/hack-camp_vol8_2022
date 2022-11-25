@@ -10,7 +10,7 @@ import { Route, Routes } from 'react-router-dom';
 export const LineLoginRoutes = () => {
   const [pathState, setPathState] = useState('');
   const handleSetPathState = (path) => setPathState(path);
-  console.log(pathState);
+  console.log('state', pathState);
   return (
     <Routes>
       <Route path="/login" element={<RedirectToProvider />} />
