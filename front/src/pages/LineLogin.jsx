@@ -4,10 +4,8 @@ import { useLocation } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 export const LineLogin = () => {
-  const [path, setPath] = useRecoilState(redirect_path);
-  console.log('recoil path', path);
+  const [, setPath] = useRecoilState(redirect_path);
   const location = useLocation();
-  console.log(location);
   setPath(location.pathname);
 
   return (

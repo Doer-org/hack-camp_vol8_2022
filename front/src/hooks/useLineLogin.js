@@ -61,7 +61,6 @@ export const HandleProviderCallback = () => {
       // あればログイン
       //sessionに追加
       setSession(profile.data);
-      console.log('nav:path', path);
       navigate(path);
       //[todo] BEに送信
     } catch (error) {
