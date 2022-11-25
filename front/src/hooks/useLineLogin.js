@@ -1,6 +1,6 @@
 import { isAuthenticatedState } from './sessionStore';
 import axios from 'axios';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { redirect, useNavigate, useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 //この辺はenvファイルに書いたほうがいいかも
@@ -15,7 +15,8 @@ const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&cli
 
 export const RedirectToProvider = () => {
   // 👇️ redirect to external URL
-  window.location.replace(url);
+  // window.location.replace(url);
+  redirect(url);
 
   return null;
 };
