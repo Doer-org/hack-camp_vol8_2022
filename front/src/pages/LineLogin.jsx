@@ -1,6 +1,9 @@
 import picture from '../Images/line_button.png';
+import { useLocation } from 'react-router-dom';
 
-export const LineLogin = () => {
+export const LineLogin = ({ path }) => {
+  // eslint-disable-next-line no-unused-vars
+  path = useLocation().pathname;
   return (
     <div className="mt-10 text-center">
       <h1 className="text-gray-800 text-2xl md:text-3xl font-bold text-center mb-10">

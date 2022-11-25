@@ -4,24 +4,18 @@ import {
 } from '../hooks/useLineLogin';
 import { LineLogin } from '../pages/LineLogin';
 import React from 'react';
-import { useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 export const LineLoginRoutes = () => {
-  const [pathState, setPathState] = useState('');
-  const pathname = useLocation().pathname;
-  if (pathname.match('/event')) {
-    setPathState(pathname);
-  }
-
+  let path;
   return (
     <Routes>
       <Route path="/login" element={<RedirectToProvider />} />
       <Route
         path="/line/callback"
-        element={<HandleProviderCallback path={pathState} />}
+        element={<HandleProviderCallback path={path} />}
       />
-      <Route path="*" element={<LineLogin />} />
+      <Route path="*" element={<LineLogin path={path} />} />
     </Routes>
   );
 };
