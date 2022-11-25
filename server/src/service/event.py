@@ -18,10 +18,10 @@ class EventService:
     #     return self.__repository.get_all()
 
     def create(self, e: Event) -> Tuple[Event, Error]:
-         if e.name == "":
-             return None, Error(msg="name is empty")
-         if e.number == "":
-             return None, Error(msg="number is empty")
-         if e.total_amount == "":
-             return None, Error(msg="total_amount is empty")
-         return self.__repository.create(e)
+        if e.name == "":
+            return None, Error(msg="name is empty")
+        if e.number == "":
+            return None, Error(msg="number is empty")
+        if e.total_amount == "":
+            return None, Error(msg="total_amount is empty")
+        return self.__repository.create(e)
