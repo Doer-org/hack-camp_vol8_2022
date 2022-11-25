@@ -18,7 +18,7 @@ export const LineLoginRoutes = () => {
         path="/line/callback"
         element={<HandleProviderCallback pathname={stateProp} />}
       />
-      <Route path="*" element={<LineLogin />} setPathname={setState} />
+      <Route path="*" element={<LineLogin setPathname={setState} />} />
     </Routes>
   );
 };
