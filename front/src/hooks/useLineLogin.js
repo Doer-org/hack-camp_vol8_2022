@@ -1,4 +1,3 @@
-import { generateRandomString } from './generateRandomString';
 import { isAuthenticatedState } from './sessionStore';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -10,7 +9,8 @@ const redirect_uri = encodeURI(
   'https://warikan-generator.vercel.app/line/callback'
 );
 const client_secret = 'bafde86582cd2ba675804f11d3092893';
-const state = generateRandomString();
+//ランダムなstateにしたい
+const state = 'vol8warikanGenerator';
 const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile`;
 
 export const RedirectToProvider = () => {
@@ -20,7 +20,7 @@ export const RedirectToProvider = () => {
   return null;
 };
 
-export const HandleProviderCallback = () => {
+export const HandleProviderCallback = async () => {
   const [, setSession] = useRecoilState(isAuthenticatedState);
   const navigate = useNavigate();
 
@@ -41,32 +41,32 @@ export const HandleProviderCallback = () => {
   // TODO 返ってきたstateのチェックをしたい
   //stateが最初にリダイレクトしたものと一致しない、レンダリングで異なるurlになっている
   // if (returnState === state) {
-  axios
+  const accessToken = await axios
     .post('https://api.line.me/oauth2/v2.1/token', params)
     .then((res) => {
-      const accessToken = res.data.access_token;
-
-      axios
-        .get('https://api.line.me/v2/profile', {
-          headers: {
-            Authorization: `Bearer ${accessToken}`
-          }
-        })
-        .then((res) => {
-          console.log(res.data);
-          // [todo] ログイン処理
-          // (user_idがuserテーブルに存在するかどうかで判定)
-          // なければ新規登録
-
-          // あればログイン
-          //sessionに追加
-          setSession(res.data);
-          navigate('/');
-          // [todo] BEに送信
-        });
+      return res.data.access_token;
     })
     .catch((error) => {
       console.log(error);
+    });
+
+  await axios
+    .get('https://api.line.me/v2/profile', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    .then((res) => {
+      console.log(res.data);
+      // [todo] ログイン処理
+      // (user_idがuserテーブルに存在するかどうかで判定)
+      // なければ新規登録
+
+      // あればログイン
+      //sessionに追加
+      setSession(res.data);
+      navigate('/');
+      // [todo] BEに送信
     });
   // }
 };
