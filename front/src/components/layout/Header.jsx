@@ -18,12 +18,12 @@ export const Header = () => {
               src={
                 session
                   ? session?.pictureUrl
-                  : 'https://source.unsplash.com/random'
+                  : 'https://img.icons8.com/ios-filled/100/null/user-male-circle.png'
               }
               className="mx-auto object-cover rounded-full h-8 w-8 "
             />
             <span className="text-gray-600 text-sm font-medium ml-3">
-              {session ? session?.displayName : 'Charlie'}
+              {session ? session?.displayName : 'None'}
             </span>
           </div>
         </div>

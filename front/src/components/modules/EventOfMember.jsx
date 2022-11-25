@@ -2,12 +2,13 @@ import React from 'react';
 
 export const EventOfMember = ({ id }) => {
   //BEからイベント情報を取得する
+  const eventId = id;
   const eventName = 'イベント名';
 
   return (
     <>
       <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">
-        {eventName} 詳細画面
+        {eventName} 詳細画面 {eventId}
       </h2>
       <div className="bg-pink-600 mt-10">
         <div className="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
