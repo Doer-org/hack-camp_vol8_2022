@@ -1,9 +1,7 @@
 import picture from '../Images/line_button.png';
-import { useLocation } from 'react-router-dom';
 
 export const LineLogin = ({ setPathname }) => {
-  const pathName = useLocation().pathname;
-  setPathname(pathName);
+  setPathname();
   return (
     <div className="mt-10 text-center">
       <h1 className="text-gray-800 text-2xl md:text-3xl font-bold text-center mb-10">
