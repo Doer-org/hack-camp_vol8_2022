@@ -1,4 +1,4 @@
-import { LinkButton } from '../components/atoms/LinkButton';
+import picture from '../Images/line_button.png';
 
 export const LineLogin = () => {
   return (
@@ -7,11 +7,9 @@ export const LineLogin = () => {
         ログイン画面
       </h1>
 
-      <LinkButton
-        path="/login"
-        label="LINEログイン"
-        color="hover:bg-green-700 text-white bg-green-500"
-      />
+      <a href="/login" className="w-32 inline-block">
+        <img src={picture} alt="LINEログイン" className="w-32 mx-auto" />
+      </a>
     </div>
   );
 };
