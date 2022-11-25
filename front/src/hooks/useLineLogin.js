@@ -1,6 +1,6 @@
 import { isAuthenticatedState } from './sessionStore';
 import axios from 'axios';
-import { redirect, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 //この辺はenvファイルに書いたほうがいいかも
@@ -15,8 +15,7 @@ const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&cli
 
 export const RedirectToProvider = () => {
   // 👇️ redirect to external URL
-  // window.location.replace(url);
-  redirect(url);
+  window.location.replace(url);
 
   return null;
 };
@@ -63,7 +62,7 @@ export const HandleProviderCallback = ({ path }) => {
       //sessionに追加
       setSession(profile.data);
       console.log('nav:path', path);
-      path ? navigate(path) : navigate('/');
+      navigate(path);
       //[todo] BEに送信
     } catch (error) {
       console.log(error);
