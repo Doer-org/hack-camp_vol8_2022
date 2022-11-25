@@ -10,3 +10,8 @@ export const isAuthenticatedState = atom({
   default: null,
   effects_UNSTABLE: [persistAtom]
 });
+
+export const redirect_path = atom({
+  key: 'redirect_path',
+  default: '/'
+});

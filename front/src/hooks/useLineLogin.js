@@ -1,4 +1,4 @@
-import { isAuthenticatedState } from './sessionStore';
+import { isAuthenticatedState, redirect_path } from './sessionStore';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -14,13 +14,13 @@ const state = 'vol8warikanGenerator';
 const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&bot_prompt=aggressive&scope=profile`;
 
 export const RedirectToProvider = () => {
-  // 👇️ redirect to external URL
   window.location.replace(url);
 
   return null;
 };
 
-export const HandleProviderCallback = ({ path }) => {
+export const HandleProviderCallback = () => {
+  const [path] = useRecoilState(redirect_path);
   const [, setSession] = useRecoilState(isAuthenticatedState);
   const navigate = useNavigate();
 
