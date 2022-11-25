@@ -38,30 +38,26 @@ export const HandleProviderCallback = () => {
   params.append('client_id', client_id);
   params.append('client_secret', client_secret);
 
-  getLineProfile();
+  getLineProfile;
 
   // TODO 返ってきたstateのチェックをしたい
   //stateが最初にリダイレクトしたものと一致しない、レンダリングで異なるurlになっている
   // if (returnState === state)
 
   const getLineProfile = async () => {
-    try {
-      const response = await axios.post(
-        'https://api.line.me/oauth2/v2.1/token',
-        params
-      );
-      const { access_token } = response.data;
-      const profile = await axios.get('https://api.line.me/v2/profile', {
-        headers: {
-          Authorization: `Bearer ${access_token}`
-        }
-      });
-      console.log(profile.data);
-      setSession(profile.data);
-      navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await axios.post(
+      'https://api.line.me/oauth2/v2.1/token',
+      params
+    );
+    const { access_token } = response.data;
+    const profile = await axios.get('https://api.line.me/v2/profile', {
+      headers: {
+        Authorization: `Bearer ${access_token}`
+      }
+    });
+    console.log(profile.data);
+    setSession(profile.data);
+    navigate('/');
   };
   // axios
   //   .post('https://api.line.me/oauth2/v2.1/token', params)
