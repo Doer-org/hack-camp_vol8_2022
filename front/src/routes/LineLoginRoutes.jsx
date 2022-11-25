@@ -5,12 +5,15 @@ import {
 import { LineLogin } from '../pages/LineLogin';
 import React from 'react';
 import { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 export const LineLoginRoutes = () => {
   const [pathState, setPathState] = useState('');
-  const handleSetPathState = (path) => setPathState(path);
-  console.log('state', pathState);
+  const pathname = useLocation().pathname;
+  if (pathname.match('/event')) {
+    setPathState(pathname);
+  }
+
   return (
     <Routes>
       <Route path="/login" element={<RedirectToProvider />} />
@@ -18,10 +21,7 @@ export const LineLoginRoutes = () => {
         path="/line/callback"
         element={<HandleProviderCallback path={pathState} />}
       />
-      <Route
-        path="*"
-        element={<LineLogin handleSetPathState={handleSetPathState} />}
-      />
+      <Route path="*" element={<LineLogin />} />
     </Routes>
   );
 };
