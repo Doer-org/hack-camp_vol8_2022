@@ -1,6 +1,7 @@
 import picture from '../Images/line_button.png';
 
 export const LineLogin = ({ setPathname }) => {
+  console.log(setPathname);
   setPathname();
   return (
     <div className="mt-10 text-center">
