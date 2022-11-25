@@ -61,6 +61,7 @@ export const HandleProviderCallback = ({ location }) => {
       // あればログイン
       //sessionに追加
       setSession(profile.data);
+      console.log(location);
       location ? navigate(location) : navigate('/');
       //[todo] BEに送信
     } catch (error) {
