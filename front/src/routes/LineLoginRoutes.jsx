@@ -9,6 +9,9 @@ import { Route, Routes } from 'react-router-dom';
 
 export const LineLoginRoutes = () => {
   const [pathname, setPathname] = useState('');
+  const handleSetPathname = (path) => {
+    setPathname(path);
+  };
   return (
     <Routes>
       <Route path="/login" element={<RedirectToProvider />} />
@@ -16,7 +19,7 @@ export const LineLoginRoutes = () => {
         path="/line/callback"
         element={<HandleProviderCallback pathname={pathname} />}
       />
-      <Route path="*" element={<LineLogin />} setPathname={setPathname} />
+      <Route path="*" element={<LineLogin />} setPathname={handleSetPathname} />
     </Routes>
   );
 };
