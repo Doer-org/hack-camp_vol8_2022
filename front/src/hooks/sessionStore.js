@@ -13,5 +13,5 @@ export const isAuthenticatedState = atom({
 
 export const redirect_path = atom({
   key: 'redirect_path',
-  default: '/'
+  default: '/new'
 });
