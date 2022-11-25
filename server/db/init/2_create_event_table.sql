@@ -14,7 +14,7 @@ CREATE TABLE "events" (
 
 -- --テーブルにデータを挿入
 INSERT INTO "events" ("name", "admin_id", "total_amount", "number")
-VALUES ('Asano', 1123, 37, 307);
+VALUES ('nomi', 1, 20000, 2);
 
 INSERT INTO "events" ("name", "admin_id", "total_amount", "number")
-VALUES ('Doan', 1234, 37, 307);
+VALUES ('usj', 3, 10000, 10);
