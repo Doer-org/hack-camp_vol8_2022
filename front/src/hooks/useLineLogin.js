@@ -12,7 +12,7 @@ const client_secret = 'bafde86582cd2ba675804f11d3092893';
 //ランダムなstateにしたい
 const state = 'vol8warikanGenerator';
 const bot_prompt = 'aggressive';
-const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=profile&bot_prompt=${bot_prompt}`;
+const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&bot_prompt=${bot_prompt}&scope=profile`;
 
 export const RedirectToProvider = () => {
   // 👇️ redirect to external URL
