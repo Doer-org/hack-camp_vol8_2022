@@ -4,14 +4,18 @@ import {
 } from '../hooks/useLineLogin';
 import { LineLogin } from '../pages/LineLogin';
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 export const LineLoginRoutes = () => {
+  const location = useLocation();
   return (
     <Routes>
       <Route path="/" element={<LineLogin />} />
       <Route path="/login" element={<RedirectToProvider />} />
-      <Route path="/line/callback" element={<HandleProviderCallback />} />
+      <Route
+        path="/line/callback"
+        element={<HandleProviderCallback location={location} />}
+      />
       <Route path="*" element={<LineLogin />} />
     </Routes>
   );
