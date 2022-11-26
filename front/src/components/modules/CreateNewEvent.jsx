@@ -32,7 +32,7 @@ export const CreateEventForm = () => {
       closeModal();
       handleCannotSubmit();
       //APIを叩く
-      createEvent(data);
+      // createEvent(data);
     } else {
       handleCanSubmit();
       openModal();
