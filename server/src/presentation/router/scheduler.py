@@ -18,6 +18,7 @@ __c = SchedulerController(__s)
 
 @api.route("/scheduler", methods=["GET"])
 def get():
-    return __c.get()
+    __c.get()
+    return "通知完了！"
     # notification.scheduler.scheduler()
     # return "scheduler完了"
