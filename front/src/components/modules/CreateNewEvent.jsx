@@ -1,12 +1,13 @@
 import { BaseButton } from '../atoms/BaseButton';
 import { InputBlock } from '../atoms/InputBlock';
 import Modal from '../atoms/Modal';
+import { useCreateEvent } from 'hooks/api/useCreateEvent';
 import { useEvent } from 'hooks/api/useEvent';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 export const CreateEventForm = () => {
-  // const { createEvent } = useCreateEvent();
+  const { createEvent } = useCreateEvent();
   const { getEvent } = useEvent();
   const [isOpen, setIsOpen] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
@@ -32,7 +33,7 @@ export const CreateEventForm = () => {
       closeModal();
       handleCannotSubmit();
       //APIを叩く
-      // createEvent(data);
+      createEvent(data);
     } else {
       handleCanSubmit();
       openModal();
