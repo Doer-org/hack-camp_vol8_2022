@@ -10,8 +10,6 @@ from linebot.models import (
 )
 import os
 
-import server.src.notification.scheduler
-
 
 api = Blueprint("health_line", __name__)
 ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
