@@ -17,13 +17,13 @@ export const Header = () => {
               alt="profile"
               src={
                 session
-                  ? session?.pictureUrl
+                  ? session?.picture_url
                   : 'https://img.icons8.com/ios-filled/100/null/user-male-circle.png'
               }
               className="mx-auto object-cover rounded-full h-8 w-8 "
             />
             <span className="text-gray-600 text-sm font-medium ml-3">
-              {session ? session?.displayName : 'None'}
+              {session ? session?.display_name : 'None'}
             </span>
           </div>
         </div>
