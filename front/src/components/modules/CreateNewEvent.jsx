@@ -16,7 +16,6 @@ export const CreateEventForm = () => {
     setCanSubmit(false);
   };
   const openModal = () => {
-    console.log('openModal');
     setIsOpen(true);
   };
   const closeModal = () => {
