@@ -10,8 +10,16 @@ app.register_blueprint(event.api)
 app.register_blueprint(status.api)
 app.register_blueprint(health_line.api)
 app.register_blueprint(scheduler.api)
-CORS(
-    app,
-    supports_credentials=True,
-    origins=["https://warikan-generator.vercel.app"]
-)
+# CORS(
+#     app,
+#     supports_credentials=True
+#     origins=["https://warikan-generator.vercel.app"]
+# )
+
+
+@app.after_request
+def after_request(res):
+    res.headers.add('Access-Control-Allow-Origin', '*')
+    res.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    res.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return res
