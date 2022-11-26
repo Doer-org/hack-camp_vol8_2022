@@ -18,7 +18,7 @@ app.register_blueprint(status.api)
 app.register_blueprint(health_line.api)
 app.register_blueprint(scheduler.api)
 
-CORS(app)
+CORS(app, resources={"/*": {"origins": "*"}})
 
 
 # @app.after_request
