@@ -1,5 +1,5 @@
-import { $axios } from './axios';
 import { useNavigate } from 'react-router-dom';
+import { $axios } from './axios';
 
 export const useCreateEvent = () => {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ export const useCreateEvent = () => {
       .post('/event', data, {
         withCredentials: true,
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+          'Content-Type': 'application/json'
         }
       })
       .then((res) => {
