@@ -16,35 +16,38 @@ class EventRepository:
 
     # eventを取得し、それを返す
     def get(self, id: int) -> Tuple[Event, Error]:
-        dto_event = (
-            self.__session.query(EventDto)
-            .filter(EventDto.id == id)
-            .limit(1)
-            .one()
-        )
-        dto_participants = (
-            self.__session.query(
-                UserDto,
-                UserDto.id,
-                UserDto.display_name,
-                UserDto.line_id,
-                UserDto.picture_url,
-                StatusDto.is_payment,
-                StatusDto.event_id,
-                StatusDto.user_id,
+        try:
+            dto_event = (
+                self.__session.query(EventDto)
+                .filter(EventDto.id == id)
+                .limit(1)
+                .one()
             )
-            .join(StatusDto, StatusDto.user_id == UserDto.id)
-            .filter(StatusDto.event_id == dto_event.id)
-            .all()
-        )
-        dto_to_participant = ()
+            dto_participants = (
+                self.__session.query(
+                    UserDto,
+                    UserDto.id,
+                    UserDto.display_name,
+                    UserDto.line_id,
+                    UserDto.picture_url,
+                    StatusDto.is_payment,
+                    StatusDto.event_id,
+                    StatusDto.user_id,
+                )
+                .join(StatusDto, StatusDto.user_id == UserDto.id)
+                .filter(StatusDto.event_id == dto_event.id)
+                .all()
+            )
+            dto_to_participant = ()
 
-        # TODO 見つからなかった場合のエラーハンドリング
+            # TODO 見つからなかった場合のエラーハンドリング
 
-        return (
-            dto_to_event(dto_event, dtos_to_participants(dto_participants)),
-            None,
-        )
+            return (
+                dto_to_event(dto_event, dtos_to_participants(dto_participants)),
+                None,
+            )
+        except Exception as e:
+            return None, e
 
     # event情報を保存する
     def create(self, e: Event) -> Tuple[Event, Error]:
