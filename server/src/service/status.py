@@ -15,3 +15,10 @@ class StatusService:
         if s.event_id == "":
             return None, Error(msg="event_id is empty")
         return self.__repository.create(s)
+
+    def update(self, s: Status) -> Tuple[Status, Error]:
+        if s.user_id == "":
+            return None, Error(msg="user_id is empty")
+        if s.event_id == "":
+            return None, Error(msg="event_id is empty")
+        return self.__repository.update(s)

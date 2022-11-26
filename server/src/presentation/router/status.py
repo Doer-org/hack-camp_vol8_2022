@@ -16,3 +16,8 @@ __c = StatusController(__s)
 @api.route("/status", methods=["POST"])
 def create():
     return __c.create()
+
+
+@api.route("/status", methods=["PUT"])
+def update():
+    return __c.update()
