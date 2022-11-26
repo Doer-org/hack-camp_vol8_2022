@@ -5,7 +5,7 @@ export const useCreateEvent = () => {
   const navigate = useNavigate();
   const createEvent = async (data) => {
     await $axios
-      .post('/event', data)
+      .post('/event', data, { withCredentials: true })
       .then((res) => {
         console.log('success');
         navigate('/new/complete', {
