@@ -58,15 +58,25 @@ export const HandleProviderCallback = () => {
         .get(`/user/${profile.data.userId}`)
         .then((res) => {
           return res.data;
+        })
+        .catch((error) => {
+          throw error;
         });
 
       if (user == 'No row was found when one was required') {
         // 新規登録
-        const newUser = await $axios.post('/user', {
-          line_id: profile.data.userId,
-          display_name: profile.data.displayName,
-          picture_url: profile.data.pictureUrl
-        });
+        const newUser = await $axios
+          .post('/user', {
+            line_id: profile.data.userId,
+            display_name: profile.data.displayName,
+            picture_url: profile.data.pictureUrl
+          })
+          .then((res) => {
+            return res.data;
+          })
+          .catch((error) => {
+            throw error;
+          });
         setSession(newUser);
       } else {
         // ログイン
