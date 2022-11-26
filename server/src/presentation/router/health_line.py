@@ -43,7 +43,4 @@ def health_line():
     # messages = TextSendMessage(text=text_message)
     # line_bot_api.broadcast(messages=messages)
     line_bot_api.push_message(USER_ID_DEBUG, TextSendMessage(text=text_message))
-
-    server.src.notification.scheduler.scheduler()
-
     return {"health_line": "good!!!!"}
