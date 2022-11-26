@@ -53,9 +53,17 @@ export const HandleProviderCallback = () => {
       // TODO ログイン処理
       // (user_idがuserテーブルに存在するかどうかで判定)
       // なければ新規登録
-      const user = await axios.get(
-        `https://warikan-sb4awdmn4q-an.a.run.app/user/${profile.data.userId}`
-      );
+      const user = await axios
+        .get(
+          `https://warikan-sb4awdmn4q-an.a.run.app/user/${profile.data.userId}`
+        )
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => {
+          return null;
+        });
+
       if (user) {
         // あればログイン
         setSession(user);

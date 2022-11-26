@@ -3,10 +3,12 @@ import { LinkButton } from '../components/atoms/LinkButton';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const CompleteCreateEvent = () => {
+  const location = useLocation();
   //idを取得
-  const id = '1';
+  const id = location.state.id;
   const url = `https://warikan-generator.vercel.app/event/${id}`;
   const [visible, setVisible] = useState(false);
 
