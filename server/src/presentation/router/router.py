@@ -24,9 +24,9 @@ CORS(app)
 
 @app.after_request
 def after_request(res):
-    # res.headers.add(
-    #     "Access-Control-Allow-Origin", "https://warikan-generator.vercel.app"
-    # )
+    res.headers.add(
+        "Access-Control-Allow-Origin", "https://warikan-generator.vercel.app"
+    )
     res.headers.add("Access-Control-Allow-Headers", "Content-Type")
     res.headers.add(
         "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS"
