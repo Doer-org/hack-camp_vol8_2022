@@ -1,5 +1,6 @@
 import { BaseButton } from '../components/atoms/BaseButton';
 import { LinkButton } from '../components/atoms/LinkButton';
+import QRCode from 'qrcode.react';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -35,14 +36,16 @@ export const CompleteCreateEvent = () => {
         <div className="border rounded-sm">
           <p className="text-center">{url}</p>
         </div>
-        <div className="mt-5 mb-44">
+        <div className="mt-5 mb-3">
           <BaseButton
             label="URLをコピー"
             color="bg-purple-600 hover:bg-purple-700 text-white"
             onClick={copy}
           />
         </div>
-
+        <div className="mb-20">
+          <QRCode value={url} />
+        </div>
         <hr />
         <div className="my-5">
           <LinkButton
