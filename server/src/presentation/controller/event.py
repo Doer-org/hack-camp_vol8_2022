@@ -43,7 +43,7 @@ def event_to_json(e: Event) -> dict:
         "number": e.number,
         "total_amount": e.total_amount,
         "admin_id": e.admin_id,
-        # "participants": participants_to_jsons(e.participants),
+        "participants": participants_to_jsons(e.participants),
     }
 
 
@@ -55,4 +55,5 @@ def json_to_event(j: dict) -> Event:
         admin_id=j["admin_id"],
         id=None,
         created_at=None,
+        participants=None
     )  # TODO なかった時key errorになるので直す
