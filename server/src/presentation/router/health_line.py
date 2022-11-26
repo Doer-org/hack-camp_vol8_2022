@@ -10,6 +10,7 @@ from linebot.models import (
 )
 import os
 
+
 api = Blueprint("health_line", __name__)
 ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
 SECRET = os.environ["SECRET"]
