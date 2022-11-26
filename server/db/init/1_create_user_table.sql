@@ -6,7 +6,7 @@
 CREATE TABLE "users" (
     "id"            SERIAL NOT NULL PRIMARY KEY,
     "display_name"  VARCHAR(255) NOT NULL,
-    "line_id"       VARCHAR(255) NOT NULL,
+    "line_id"       VARCHAR(255) NOT NULL UNIQUE,
     "picture_url"   VARCHAR(255)
 );
 
