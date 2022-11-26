@@ -6,10 +6,7 @@ export const useEvent = () => {
   const [session] = useRecoilState(isAuthenticatedState);
   const getEvent = async (event_id) => {
     const event = await $axios
-      .get(`/event`, {
-        id: 1,
-        event_id: event_id
-      })
+      .get(`/event/${event_id}`)
       .then((res) => {
         return res.data;
       })
