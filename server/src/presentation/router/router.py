@@ -12,5 +12,6 @@ app.register_blueprint(health_line.api)
 app.register_blueprint(scheduler.api)
 CORS(
     app,
-    supports_credentials=True
+    supports_credentials=True,
+    origins=["https://warikan-generator.vercel.app"]
 )
