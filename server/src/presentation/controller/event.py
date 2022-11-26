@@ -27,6 +27,8 @@ class EventController:
     #     return jsonify({"users": usJson})
 
     def create(self) -> dict:
+        if not request.is_json:
+            return "error"
         j = request.get_json()
         e = json_to_event(j)
         event, err = self.__service.create(e)
@@ -56,5 +58,5 @@ def json_to_event(j: dict) -> Event:
         admin_id=j["admin_id"],
         id=None,
         participants=[],
-        created_at=None
+        created_at=None,
     )  # TODO なかった時key errorになるので直す
