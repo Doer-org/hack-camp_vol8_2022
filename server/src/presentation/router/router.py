@@ -13,5 +13,5 @@ app.register_blueprint(scheduler.api)
 CORS(
     app,
     supports_credentials=True,
-    origins=["https://warikan-generator.vercel.app/"]
+    origins=["https://warikan-generator.vercel.app"]
 )
