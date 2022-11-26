@@ -15,4 +15,4 @@ INSERT INTO "users" ("display_name", "line_id", "picture_url")
 VALUES ('Asano', 'takuma1123', 'GOLLASO');
 
 INSERT INTO "users" ("display_name", "line_id", "picture_url")
-VALUES ('Doan', 'ritu1123', 'GOAL');
+VALUES ('tra', 'Uff9740dba9eb190c040d9e48144b28bb', 'GOAL');
