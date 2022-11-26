@@ -5,7 +5,12 @@ export const useCreateEvent = () => {
   const navigate = useNavigate();
   const createEvent = async (data) => {
     await $axios
-      .post('/event', data, { withCredentials: true })
+      .post('/event', data, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+      })
       .then((res) => {
         console.log('success');
         navigate('/new/complete', {
