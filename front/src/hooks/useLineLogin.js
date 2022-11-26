@@ -38,10 +38,6 @@ export const HandleProviderCallback = () => {
   params.append('client_id', client_id);
   params.append('client_secret', client_secret);
 
-  // TODO 返ってきたstateのチェックをしたい
-  //stateが最初にリダイレクトしたものと一致しない、レンダリングで異なるurlになっている
-  // if (returnState === state)
-
   const getLineProfile = async () => {
     try {
       const response = await axios.post(
@@ -54,18 +50,34 @@ export const HandleProviderCallback = () => {
           Authorization: `Bearer ${access_token}`
         }
       });
-      //[todo] ログイン処理
+      // TODO ログイン処理
       // (user_idがuserテーブルに存在するかどうかで判定)
       // なければ新規登録
+      const user = await axios.get(
+        `https://warikan-sb4awdmn4q-an.a.run.app/user/${profile.data.userId}`
+      );
 
-      // あればログイン
-      //sessionに追加
-      setSession(profile.data);
+      if (user) {
+        // あればログイン
+        setSession(user);
+      } else {
+        //なければ新規登録
+        const newUser = await axios.post(
+          'https://warikan-sb4awdmn4q-an.a.run.app/user',
+          {
+            line_id: profile.data.userId,
+            display_name: profile.data.displayName,
+            picture_url: profile.data.pictureUrl
+          }
+        );
+        setSession(newUser);
+      }
+
       navigate(path);
-      //[todo] BEに送信
     } catch (error) {
       console.log(error);
+      navigate('/');
     }
   };
-  getLineProfile();
+  if (returnState === state) getLineProfile();
 };
