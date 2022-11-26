@@ -55,5 +55,5 @@ def json_to_event(j: dict) -> Event:
         admin_id=j["admin_id"],
         id=None,
         participants=[],
-        created_at=None,
+        created_at=None
     )  # TODO なかった時key errorになるので直す
