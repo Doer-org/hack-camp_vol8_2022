@@ -6,10 +6,10 @@ export const useCreateEvent = () => {
   const createEvent = async (data) => {
     await $axios
       .post('/event', data, {
-        withCredentials: true,
-        headers: {
-          'Content-Type': 'application/json'
-        }
+        // withCredentials: true,
+        // headers: {
+        //   'Content-Type': 'application/json'
+        // }
       })
       .then((res) => {
         console.log('success');
