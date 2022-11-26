@@ -8,11 +8,10 @@ export const useEvent = () => {
     const event = await $axios
       .get(`/event/${event_id}`)
       .then((res) => {
-        console.log(res);
         return res.data;
       })
       .catch(() => {
-        // participateEvent(event_id);
+        participateEvent(event_id);
       });
     return event;
   };
