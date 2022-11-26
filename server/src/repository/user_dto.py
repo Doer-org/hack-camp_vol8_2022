@@ -1,16 +1,16 @@
+from config.db.db import Base
+from model.user import User
 from sqlalchemy import Sequence
 from sqlalchemy.schema import Column
 from sqlalchemy.types import Integer, String
 
-from config.db.db import Base
-from model.user import User
 
 class UserDto(Base):
     __tablename__ = "users"
 
     id = Column(Integer, Sequence("users_id_seq"), primary_key=True)
     display_name = Column(String(255))
-    line_id = Column(String(255))
+    line_id = Column(String(255), unique=True)
     picture_url = Column(String(255))
 
 

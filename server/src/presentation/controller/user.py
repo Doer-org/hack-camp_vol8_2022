@@ -7,8 +7,8 @@ class UserController:
     def __init__(self, service: UserService) -> None:
         self.__service = service
 
-    def get(self, id: int) -> dict:
-        user, err = self.__service.get(id)
+    def get(self, line_id: str) -> dict:
+        user, err = self.__service.get(line_id)
         if err != None:
             return err.create_resp()
 
