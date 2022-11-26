@@ -1,3 +1,4 @@
+import { $axios } from './api/axios';
 import { isAuthenticatedState, redirect_path } from './sessionStore';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -53,23 +54,18 @@ export const HandleProviderCallback = () => {
       // TODO ログイン処理
       // (user_idがuserテーブルに存在するかどうかで判定)
       // なければ新規登録
-      const user = await axios.get(
-        `https://warikan-sb4awdmn4q-an.a.run.app/user/${profile.data.userId}`
-      );
+      const user = await $axios.get(`/user/${profile.data.userId}`);
 
       if (user) {
         // あればログイン
         setSession(user);
       } else {
         //なければ新規登録
-        const newUser = await axios.post(
-          'https://warikan-sb4awdmn4q-an.a.run.app/user',
-          {
-            line_id: profile.data.userId,
-            display_name: profile.data.displayName,
-            picture_url: profile.data.pictureUrl
-          }
-        );
+        const newUser = await $axios.post('/user', {
+          line_id: profile.data.userId,
+          display_name: profile.data.displayName,
+          picture_url: profile.data.pictureUrl
+        });
         setSession(newUser);
       }
 
