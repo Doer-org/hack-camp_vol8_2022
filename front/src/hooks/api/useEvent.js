@@ -14,7 +14,7 @@ export const useEvent = () => {
         return res.data;
       })
       .catch(() => {
-        participateEvent(event_id);
+        // participateEvent(event_id);
       });
     return event;
   };
