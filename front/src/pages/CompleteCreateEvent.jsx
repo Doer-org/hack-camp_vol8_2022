@@ -42,6 +42,7 @@ export const CompleteCreateEvent = () => {
             onClick={copy}
           />
         </div>
+
         <hr />
         <div className="my-5">
           <LinkButton
