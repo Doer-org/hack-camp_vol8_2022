@@ -63,6 +63,12 @@ export const CreateEventForm = () => {
               <p className="font-bold">合計金額</p>
               <p className="ml-4">{total_amount}円</p>
             </div>
+            <div className="flex ">
+              <p className="font-bold">一人当たり(100円単位)</p>
+              <p className="ml-4">
+                {Math.ceil((total_amount / number) * 0.01) / 0.01}円
+              </p>
+            </div>
           </div>
           <div className="flex space-x-3">
             <BaseButton
