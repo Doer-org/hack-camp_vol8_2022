@@ -75,7 +75,9 @@ export const HandleProviderCallback = () => {
       navigate(path);
     } catch (error) {
       console.log(error);
-      navigate('/');
+      navigate('/', {
+        state: { message: 'エラーが発生しました' }
+      });
     }
   };
   if (returnState === state) getLineProfile();

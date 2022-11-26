@@ -16,6 +16,7 @@ export const LineLogin = () => {
       <a href="/login" className="w-32 inline-block">
         <img src={picture} alt="LINEログイン" className="w-32 mx-auto" />
       </a>
+      <div className="text-red-500">{location.state.message}</div>
     </div>
   );
 };
