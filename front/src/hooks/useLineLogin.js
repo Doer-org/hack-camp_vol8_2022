@@ -57,10 +57,10 @@ export const HandleProviderCallback = () => {
       const user = await $axios
         .get(`/user/${profile.data.userId}`)
         .then((res) => {
-          return res;
+          return res.data;
         });
 
-      if (user.status == 200) {
+      if (user == 'No row was found when one was required') {
         // 新規登録
         const newUser = await $axios.post('/user', {
           line_id: profile.data.userId,
