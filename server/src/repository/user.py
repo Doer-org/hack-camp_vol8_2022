@@ -12,23 +12,32 @@ class UserRepository:
 
     # userを取得し、それを返す
     def get(self, line_id: str) -> Tuple[User, Error]:
-        dto = (
-            self.__session.query(UserDto)
-            .filter(UserDto.line_id == line_id)
-            .limit(1)
-            .one()
-        )
-        # TODO 見つからなかった場合のエラーハンドリング
+        try:
+            dto = (
+                self.__session.query(UserDto)
+                .filter(UserDto.line_id == line_id)
+                .limit(1)
+                .one()
+                # .first()
+            )
+            return dto_to_user(dto), None
+        except Exception as e:
+            return None, e
 
-        return dto_to_user(dto), None
+            # TODO 見つからなかった場合のエラーハンドリング
+            # if dto != None:
+            #     return dto_to_user(dto), None
+            # else:
+            #     return , None
 
-    # # すべてのユーザーを取得する
-    # def get_all(self) -> Tuple[list, Error]:
-    #     dtos = self.__session.query(UserDto).all()
+            # # すべてのユーザーを取得する
+            # def get_all(self) -> Tuple[list, Error]:
+            #     dtos = self.__session.query(UserDto).all()
 
-    #     return dtos_to_users(dtos), None
+            #     return dtos_to_users(dtos), None
 
-    # # user情報を保存する
+            # # user情報を保存する
+
     def create(self, u: User) -> Tuple[User, Error]:
         dto = UserDto()
         dto.display_name = u.display_name

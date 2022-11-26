@@ -10,7 +10,8 @@ class UserController:
     def get(self, line_id: str) -> dict:
         user, err = self.__service.get(line_id)
         if err != None:
-            return err.create_resp()
+            return str(err)
+            # return err.create_resp()
 
         uJson = user_to_json(user)
         return uJson
