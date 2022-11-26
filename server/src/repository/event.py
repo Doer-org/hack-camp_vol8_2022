@@ -5,7 +5,7 @@ from model.participant import Participant
 from repository.event_dto import EventDto, dto_to_event
 from repository.participant_dto import dtos_to_participants
 from repository.status_dto import StatusDto
-from repository.user import UserDto
+from repository.user_dto import UserDto
 from sqlalchemy.orm.session import Session
 from utils.error.error import Error
 

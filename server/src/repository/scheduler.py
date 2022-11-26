@@ -11,6 +11,9 @@ from model.scheduler import Scheduler
 from utils.error.error import Error
 import notification.scheduler
 import math
+from repository.status_dto import StatusDto
+from repository.user_dto import UserDto
+from repository.event_dto import EventDto
 
 
 class SchedulerRepository:
@@ -19,29 +22,51 @@ class SchedulerRepository:
 
     # Schedulerを取得し、それを返す
     def get(self) -> Tuple[Scheduler, Error]:
-        dtos_status = (
-            self.__session.query(SchedulerDtoStatus)
-            .filter(SchedulerDtoStatus.is_payment == false())  # is_paymentがFalseを抜き出す
+        dtos_notification_user = (
+            self.__session.query(
+                UserDto,
+                UserDto.line_id,
+                EventDto.total_amount,
+                EventDto.number,
+            )
+            .join(StatusDto, StatusDto.user_id == UserDto.id)
+            .join(EventDto, StatusDto.event_id == EventDto.id)
+            .filter(StatusDto.is_payment == false())  # is_paymentがFalseを抜き出す
             .all()
         )
-        dtos_user = (
-            self.__session.query(SchedulerDtoUser)
-            .filter(SchedulerDtoUser.id == dtos_status.id)
-            .all()
-        )
-        dtos_event = (
-            self.__session.query(SchedulerDtoEvent)
-            .filter(SchedulerDtoEvent.id == dtos_user.id)
-            .all()
-        )
+
+        # for dto_notification_user in dtos_notification_user:
+        #     dto_notification_price = (
+        #         self.__session.query(
+        #             dto_notification_price
+        #         )
+        #         .join(EventDto, EventDto.id == UserDto.id)
+        #         .filter(SchedulerDtoUser.id == dtos_status.id)
+        #         .all()
+        #     )
+        # dtos_notification_price = (
+        #     self.__session.query(
+        #         UserDto,
+        #         EventDto.number,
+        #         EventDto.total_amount,
+        #     )
+        #     .join(EventDto, EventDto.id == UserDto.id)
+        #     .filter(SchedulerDtoUser.id == dtos_status.id)
+        #     .all()
+        # )
+        # dtos_event = (
+        #     self.__session.query(SchedulerDtoEvent)
+        #     .filter(SchedulerDtoEvent.id == dtos_user.id)
+        #     .all()
+        # )
 
         # TODO 見つからなかった場合のエラーハンドリング
 
         # notificationに渡す
-        list_line_id, list_price = dtos_to_scheduler(dtos_user, dtos_event)
+        list_line_id, list_price = dtos_to_scheduler(dtos_notification_user)
         notification.scheduler.scheduler(list_line_id, list_price)
         # 返り値でエラーでるかも
-        return dtos_to_scheduler(dtos_user, dtos_event), None
+        return dtos_to_scheduler(dtos_notification_user), None
 
     # # user情報を保存する
     # def create(self, u: Scheduler) -> Tuple[Scheduler, Error]:
@@ -56,26 +81,26 @@ class SchedulerRepository:
     #     return u, None
 
 
-class SchedulerDtoUser(Base):
-    __tablename__ = "users"
-    __table_args__ = {'extend_existing': True}
-    id = Column(Integer, Sequence("users_id_seq"), primary_key=True)
-    line_id = Column(String(255))
+# class SchedulerDtoUser(Base):
+#     __tablename__ = "users"
+#     __table_args__ = {'extend_existing': True}
+#     id = Column(Integer, Sequence("users_id_seq"), primary_key=True)
+#     line_id = Column(String(255))
 
 
-class SchedulerDtoStatus(Base):
-    __tablename__ = "status"
-    __table_args__ = {'extend_existing': True}
-    id = Column(Integer, Sequence("users_id_seq"), primary_key=True)
-    is_payment = Column(Boolean)
+# class SchedulerDtoStatus(Base):
+#     __tablename__ = "status"
+#     __table_args__ = {'extend_existing': True}
+#     id = Column(Integer, Sequence("users_id_seq"), primary_key=True)
+#     is_payment = Column(Boolean)
 
 
-class SchedulerDtoEvent(Base):
-    __tablename__ = "events"
-    __table_args__ = {'extend_existing': True}
-    id = Column(Integer, Sequence("users_id_seq"), primary_key=True)
-    total_amount = Column(Integer)
-    number = Column(Integer)
+# class SchedulerDtoEvent(Base):
+#     __tablename__ = "events"
+#     __table_args__ = {'extend_existing': True}
+#     id = Column(Integer, Sequence("users_id_seq"), primary_key=True)
+#     total_amount = Column(Integer)
+#     number = Column(Integer)
 
 
 # def dto_to_scheduler(dto: SchedulerDto):
@@ -87,13 +112,22 @@ class SchedulerDtoEvent(Base):
 #     )
 
 
-def dtos_to_scheduler(dtos_user: list, dtos_event: list):
+# def dtos_to_scheduler(dtos_user: list, dtos_event: list):
+#     list_line_id = []
+#     list_price = []
+#     for dto in dtos_user:
+#         list_line_id.append(dto.line_id)
+#     for dto in dtos_event:
+#         price = math.ceil(dto.total_amount/dto.number / 100) * 100
+#         list_price.append(price)
+#     # scheduler = [list_line_id, list_price]
+#     return list_line_id, list_price
+
+def dtos_to_scheduler(dtos_user: list):
     list_line_id = []
     list_price = []
-    for dto in dtos_user:
-        list_line_id.append(dto.line_id)
-    for dto in dtos_event:
-        price = math.ceil(dto.total_amount/dto.number / 100) * 100
+    for dto_user in dtos_user:
+        list_line_id.append(dto_user.line_id)
+        price = math.ceil(dto_user.total_amount/dto_user.number / 100) * 100
         list_price.append(price)
-    # scheduler = [list_line_id, list_price]
     return list_line_id, list_price

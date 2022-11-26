@@ -20,4 +20,4 @@ __c = SchedulerController(__s)
 def get():
     return __c.get()
     # notification.scheduler.scheduler()
-    return "scheduler完了"
+    # return "scheduler完了"
