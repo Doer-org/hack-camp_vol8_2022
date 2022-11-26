@@ -1,10 +1,9 @@
 from typing import Tuple
 
-from sqlalchemy.orm.session import Session
-
 from model.user import User
-from utils.error.error import Error
 from repository.user_dto import UserDto, dto_to_user
+from sqlalchemy.orm.session import Session
+from utils.error.error import Error
 
 
 class UserRepository:
@@ -12,10 +11,10 @@ class UserRepository:
         self.__session = session
 
     # userを取得し、それを返す
-    def get(self, id: int) -> Tuple[User, Error]:
+    def get(self, line_id: str) -> Tuple[User, Error]:
         dto = (
             self.__session.query(UserDto)
-            .filter(UserDto.id == id)
+            .filter(UserDto.line_id == line_id)
             .limit(1)
             .one()
         )

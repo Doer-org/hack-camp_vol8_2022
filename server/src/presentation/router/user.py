@@ -1,6 +1,5 @@
-from flask import Blueprint
-
 from config.db.session import session
+from flask import Blueprint
 from presentation.controller.user import UserController
 from repository.user import UserRepository
 from service.user import UserService
@@ -14,9 +13,9 @@ __s = UserService(__r)
 __c = UserController(__s)
 
 
-@api.route("/user/<int:id>", methods=["GET"])
-def get(id):
-    return __c.get(id)
+@api.route("/user/<line_id>", methods=["GET"])
+def get(line_id):
+    return __c.get(line_id)
 
 
 # @api.route("/user/all", methods=["GET"])
