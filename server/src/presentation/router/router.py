@@ -18,15 +18,7 @@ app.register_blueprint(status.api)
 app.register_blueprint(health_line.api)
 app.register_blueprint(scheduler.api)
 
-CORS(
-    app,
-    resources={
-        "/*": {
-            "origins": "https://warikan-generator.vercel.app",
-            "supports_credentials": True,
-        }
-    },
-)
+CORS(app)
 
 
 # @app.after_request
