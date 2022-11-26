@@ -8,3 +8,4 @@ psycopg2==2.9.5
 SQLAlchemy==1.4.44
 Werkzeug==2.2.2
 line-bot-sdk==2.3.0
+flask-cors

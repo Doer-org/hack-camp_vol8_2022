@@ -9,6 +9,11 @@ from sqlalchemy.sql.expression import false
 from config.db.db import Base
 from model.scheduler import Scheduler
 from utils.error.error import Error
+import notification.scheduler
+import math
+from repository.status_dto import StatusDto
+from repository.user_dto import UserDto
+from repository.event_dto import EventDto
 
 
 class SchedulerRepository:
@@ -17,47 +22,31 @@ class SchedulerRepository:
 
     # Schedulerを取得し、それを返す
     def get(self) -> Tuple[Scheduler, Error]:
-        dtos = (
-            self.__session.query(SchedulerDto)
-            .filter(SchedulerDto.is_payment == false())  # is_paymentがFalseを抜き出す
+        dtos_notification_user = (
+            self.__session.query(
+                UserDto,
+                UserDto.line_id,
+                EventDto.total_amount,
+                EventDto.number,
+            )
+            .join(StatusDto, StatusDto.user_id == UserDto.id)
+            .join(EventDto, StatusDto.event_id == EventDto.id)
+            .filter(StatusDto.is_payment == false())  # is_paymentがFalseを抜き出す
             .all()
         )
-        # TODO 見つからなかった場合のエラーハンドリング
 
-        return dtos_to_scheduler(dtos), None
-
-    # # user情報を保存する
-    # def create(self, u: Scheduler) -> Tuple[Scheduler, Error]:
-    #     dto = SchedulerDto()
-    #     dto.display_name = u.display_name
-    #     dto.line_id = u.line_id
-    #     dto.picture_url = u.picture_url
-
-    #     self.__session.add(dto)
-    #     self.__session.commit()
-
-    #     return u, None
+        # notificationに渡す
+        list_line_id, list_price = dtos_to_scheduler(dtos_notification_user)
+        notification.scheduler.scheduler(list_line_id, list_price)
+        # 返り値でエラーでるかも
+        return dtos_to_scheduler(dtos_notification_user), None
 
 
-class SchedulerDto(Base):
-    __tablename__ = "users"
-
-    id = Column(Integer, Sequence("users_id_seq"), primary_key=True)
-    line_id = Column(String(255))
-    is_payment = Column(Boolean)
-
-
-def dto_to_scheduler(dto: SchedulerDto):
-    return Scheduler(
-        id=dto.id,
-        line_id=dto.line_id,
-        is_payment=dto.is_payment
-
-    )
-
-
-def dtos_to_scheduler(dtos: list):
-    scheduler = []
-    for dto in dtos:
-        scheduler.append(dto_to_scheduler(dto))
-    return scheduler
+def dtos_to_scheduler(dtos_user: list):
+    list_line_id = []
+    list_price = []
+    for dto_user in dtos_user:
+        list_line_id.append(dto_user.line_id)
+        price = math.ceil(dto_user.total_amount/dto_user.number / 100) * 100
+        list_price.append(price)
+    return list_line_id, list_price

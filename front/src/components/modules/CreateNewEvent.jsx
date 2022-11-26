@@ -1,11 +1,12 @@
 import { BaseButton } from '../atoms/BaseButton';
 import { InputBlock } from '../atoms/InputBlock';
 import Modal from '../atoms/Modal';
+import { useCreateEvent } from 'hooks/api/useCreateEvent';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
 export const CreateEventForm = () => {
+  const { createEvent } = useCreateEvent();
   const [isOpen, setIsOpen] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
 
@@ -24,25 +25,22 @@ export const CreateEventForm = () => {
 
   const methods = useForm();
 
-  const navigate = useNavigate();
-
   const onSubmit = (data) => {
     if (canSubmit) {
       console.log(data);
-      //APIを叩く
       closeModal();
       handleCannotSubmit();
-      //成功したら
-      navigate('/new/complete');
+      //APIを叩く
+      createEvent(data);
     } else {
       handleCanSubmit();
       openModal();
     }
   };
 
-  const eventName = methods.getValues('eventName');
-  const participants = methods.getValues('participants');
-  const totalAmount = methods.getValues('totalAmount');
+  const name = methods.getValues('name');
+  const number = methods.getValues('number');
+  const total_amount = methods.getValues('total_amount');
   return (
     <FormProvider {...methods}>
       <form
@@ -55,15 +53,21 @@ export const CreateEventForm = () => {
           <div className="border shadow-sm m-5 p-3">
             <div className="flex">
               <p className="font-bold">イベント名</p>
-              <p className="ml-4">{eventName}</p>
+              <p className="ml-4">{name}</p>
             </div>
             <div className="flex">
               <p className="font-bold">参加者</p>
-              <p className="ml-4">{participants}人</p>
+              <p className="ml-4">{number}人</p>
             </div>
             <div className="flex ">
               <p className="font-bold">合計金額</p>
-              <p className="ml-4">{totalAmount}円</p>
+              <p className="ml-4">{total_amount}円</p>
+            </div>
+            <div className="flex ">
+              <p className="font-bold">一人当たり(100円単位)</p>
+              <p className="ml-4">
+                {Math.ceil((total_amount / number) * 0.01) / 0.01}円
+              </p>
             </div>
           </div>
           <div className="flex space-x-3">
@@ -90,7 +94,7 @@ export const CreateEventForm = () => {
           text="イベント名"
           subText="イベントの名前を入力してください"
           isRequired
-          name="eventName"
+          name="name"
           options={{ required: '必須項目です' }}
           type="text"
           placeholder="飲み会"
@@ -99,7 +103,7 @@ export const CreateEventForm = () => {
           text="人数"
           subText="イベントの参加者の人数を入力してください"
           isRequired
-          name="participants"
+          name="number"
           options={{ required: '必須項目です' }}
           type="number"
           unit="人"
@@ -108,7 +112,7 @@ export const CreateEventForm = () => {
           text="合計金額"
           subText="立て替えた合計金額を入力してください"
           isRequired
-          name="totalAmount"
+          name="total_amount"
           options={{ required: '必須項目です' }}
           type="number"
           unit="円"

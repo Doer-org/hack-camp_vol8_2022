@@ -11,7 +11,8 @@ class EventController:
     def get(self, id: int) -> dict:
         event, err = self.__service.get(id)
         if err != None:
-            return err.create_resp()
+            # return err.create_resp()
+            return str(err)
 
         eJson = event_to_json(event)
         print(eJson)
