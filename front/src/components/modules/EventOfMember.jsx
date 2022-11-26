@@ -1,14 +1,12 @@
 import React from 'react';
 
-export const EventOfMember = ({ id }) => {
+export const EventOfMember = ({ event }) => {
   //BEからイベント情報を取得する
-  const eventId = id;
-  const eventName = 'イベント名';
 
   return (
     <>
       <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">
-        {eventName} 詳細画面 {eventId}
+        {event.name} 詳細画面
       </h2>
       <div className="bg-pink-600 mt-10">
         <div className="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
@@ -36,20 +34,20 @@ export const EventOfMember = ({ id }) => {
       <div className="flex items-center mt-10 justify-between mx-5">
         <div className="bg-purple-600 text-white rounded-md py-3 px-2 text-center w-1/3">
           {/* 支払うべきお金 */}
-          1500円
+          {Math.ceil((event.total_amount / event.number) * 0.01) / 0.01}円
         </div>
         <div className="font-bold">TO</div>
         <div className="shadow-lg rounded-2xl bg-white p-2">
           <div className="flex-row gap-4 flex justify-center items-center">
             <div className="flex-shrink-0">
               <img
-                alt="profil"
+                alt="profile"
                 src="https://source.unsplash.com/random"
                 className="mx-auto object-cover rounded-full h-10 w-10 "
               />
             </div>
             <div className=" flex flex-col">
-              <span className="text-gray-600 text-lg font-medium">Charlie</span>
+              <span className="text-gray-600 text-lg font-medium">event</span>
             </div>
           </div>
         </div>

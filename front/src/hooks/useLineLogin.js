@@ -56,6 +56,7 @@ export const HandleProviderCallback = () => {
       const user = await axios.get(
         `https://warikan-sb4awdmn4q-an.a.run.app/user/${profile.data.userId}`
       );
+
       if (user) {
         // あればログイン
         setSession(user);
