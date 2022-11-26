@@ -17,6 +17,16 @@ class StatusController:
         sJson = status_to_json(status)
         return sJson
 
+    def update(self) -> dict:
+        j = request.get_json()
+        s = json_to_status(j)
+        status, err = self.__service.update(s)
+        if err != None:
+            return err.create_resp()
+
+        sJson = status_to_json(status)
+        return sJson
+
 
 def status_to_json(s: Status) -> dict:
     return {

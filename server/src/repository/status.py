@@ -24,3 +24,17 @@ class StatusRepository:
         s.is_payment = False
 
         return s, None
+
+    def update(self, s: Status) -> Tuple[Status, Error]:
+        dto = (
+            self.__session.query(StatusDto)
+            .filter(s.user_id == StatusDto.user_id)
+            .filter(s.event_id == StatusDto.event_id)
+            .first()
+        )
+        dto.is_payment = True
+        self.__session.commit()
+        s.id = dto.id
+        s.is_payment = dto.is_payment
+
+        return s, None
