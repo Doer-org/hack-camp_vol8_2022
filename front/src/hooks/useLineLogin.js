@@ -54,22 +54,24 @@ export const HandleProviderCallback = () => {
       // TODO ログイン処理
       // (user_idがuserテーブルに存在するかどうかで判定)
       // なければ新規登録
-      await $axios
+      const user = await $axios
         .get(`/user/${profile.data.userId}`)
         .then((res) => {
-          console.log(res);
-          // あればログイン
-          setSession(res.data);
-        })
-        .catch(async () => {
-          // なければ新規登録
-          const newUser = await $axios.post('/user', {
-            line_id: profile.data.userId,
-            display_name: profile.data.displayName,
-            picture_url: profile.data.pictureUrl
-          });
-          setSession(newUser);
+          return res;
         });
+
+      if (user.status == 200) {
+        // 新規登録
+        const newUser = await $axios.post('/user', {
+          line_id: profile.data.userId,
+          display_name: profile.data.displayName,
+          picture_url: profile.data.pictureUrl
+        });
+        setSession(newUser);
+      } else {
+        // ログイン
+        setSession(user);
+      }
 
       navigate(path);
     } catch (error) {
