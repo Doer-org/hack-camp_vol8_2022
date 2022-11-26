@@ -37,9 +37,6 @@ class EventRepository:
             .filter(StatusDto.event_id == dto_event.id)
             .all()
         )
-        print(dto_participants)
-        print(dto_participants[0].is_payment)
-
         dto_to_participant = ()
 
         # TODO 見つからなかった場合のエラーハンドリング
@@ -49,7 +46,7 @@ class EventRepository:
             None,
         )
 
-    # # event情報を保存する
+    # event情報を保存する
     def create(self, e: Event) -> Tuple[Event, Error]:
         dto = EventDto()
         dto.name = e.name
