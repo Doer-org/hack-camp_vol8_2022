@@ -43,7 +43,7 @@ export const CompleteCreateEvent = () => {
             onClick={copy}
           />
         </div>
-        <div className="mb-20 flex items-center">
+        <div className="mb-20 flex items-center justify-center">
           <QRCode value={url} />
         </div>
         <hr />
