@@ -57,6 +57,7 @@ export const HandleProviderCallback = () => {
       await $axios
         .get(`/user/${profile.data.userId}`)
         .then((res) => {
+          console.log(res);
           // あればログイン
           setSession(res.data);
         })
