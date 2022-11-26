@@ -1,18 +1,14 @@
 import { isAuthenticatedState, redirect_path } from './sessionStore';
-import {
-  API_DEV_URL,
-  LINE_CHANNEL_ID,
-  LINE_CHANNEL_SECRET,
-  LINE_PROFILE_URL,
-  LINE_TOKEN_URL
-} from '../config';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
-const client_id = LINE_CHANNEL_ID;
-const redirect_uri = encodeURI(API_DEV_URL + '/line/callback');
-const client_secret = LINE_CHANNEL_SECRET;
+//この辺はenvファイルに書いたほうがいいかも
+const client_id = '1657672330';
+const redirect_uri = encodeURI(
+  'https://warikan-generator.vercel.app/line/callback'
+);
+const client_secret = 'bafde86582cd2ba675804f11d3092893';
 //ランダムなstateにしたい
 const state = 'vol8warikanGenerator';
 const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&bot_prompt=aggressive&scope=profile`;
@@ -32,6 +28,9 @@ export const HandleProviderCallback = () => {
   const returnCode = queryParameters.get('code');
   const returnState = queryParameters.get('state');
 
+  console.log(state);
+  console.log(returnState);
+
   var params = new URLSearchParams();
   params.append('grant_type', 'authorization_code');
   params.append('code', returnCode);
@@ -39,11 +38,18 @@ export const HandleProviderCallback = () => {
   params.append('client_id', client_id);
   params.append('client_secret', client_secret);
 
+  // TODO 返ってきたstateのチェックをしたい
+  //stateが最初にリダイレクトしたものと一致しない、レンダリングで異なるurlになっている
+  // if (returnState === state)
+
   const getLineProfile = async () => {
     try {
-      const response = await axios.post(LINE_TOKEN_URL, params);
+      const response = await axios.post(
+        'https://api.line.me/oauth2/v2.1/token',
+        params
+      );
       const { access_token } = response.data;
-      const profile = await axios.get(LINE_PROFILE_URL, {
+      const profile = await axios.get('https://api.line.me/v2/profile', {
         headers: {
           Authorization: `Bearer ${access_token}`
         }
@@ -61,5 +67,5 @@ export const HandleProviderCallback = () => {
       console.log(error);
     }
   };
-  if (returnState === state) getLineProfile();
+  getLineProfile();
 };
