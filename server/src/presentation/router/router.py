@@ -19,7 +19,8 @@ app.register_blueprint(scheduler.api)
 
 @app.after_request
 def after_request(res):
-    res.headers.add('Access-Control-Allow-Origin', '*')
+    res.headers.add('Access-Control-Allow-Origin', 'https://warikan-generator.vercel.app')
     res.headers.add('Access-Control-Allow-Headers', 'Content-Type')
     res.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    res.headers.add('Access-Control-Allow-Credentials', 'true')
     return res
