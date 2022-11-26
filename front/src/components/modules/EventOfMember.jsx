@@ -1,8 +1,6 @@
 import React from 'react';
 
 export const EventOfMember = ({ event }) => {
-  //BEからイベント情報を取得する
-
   return (
     <>
       <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">

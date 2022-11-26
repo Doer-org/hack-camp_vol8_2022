@@ -1,3 +1,4 @@
+import { $axios } from './axios';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,7 +7,7 @@ axios.defaults.baseURL = 'https://warikan-sb4awdmn4q-an.a.run.app';
 export const useCreateEvent = () => {
   const createEvent = async (data) => {
     const navigate = useNavigate();
-    await axios
+    await $axios
       .post('event', data)
       .then((res) => {
         navigate('/new/complete', {

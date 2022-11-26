@@ -1,12 +1,11 @@
-import axios from 'axios';
+import { $axios } from './axios';
 import { isAuthenticatedState } from 'hooks/sessionStore';
 import { useRecoilState } from 'recoil';
 
-axios.defaults.baseURL = 'https://warikan-sb4awdmn4q-an.a.run.app';
 export const useEvent = () => {
   const [session] = useRecoilState(isAuthenticatedState);
   const getEvent = async (event_id) => {
-    const event = await axios
+    const event = await $axios
       .get(`/event`, {
         id: session.id,
         event_id: event_id
@@ -21,7 +20,7 @@ export const useEvent = () => {
   };
 
   const participateEvent = async (event_id) => {
-    const event = await axios
+    const event = await $axios
       .post(`/status`, {
         id: session.id,
         event_id: event_id
@@ -36,7 +35,7 @@ export const useEvent = () => {
   };
 
   const completePayment = async (user_id, event_id) => {
-    const event = await axios
+    const event = await $axios
       .post(`/status`, {
         id: user_id,
         event_id: event_id
