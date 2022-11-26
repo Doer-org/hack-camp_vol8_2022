@@ -5,6 +5,7 @@ export const $axios = axios.create({
   withCredentials: true,
   headers: {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type'
+    'Access-Control-Allow-Headers':
+      'Origin, X-Requested-With, Content-Type, Accept'
   }
 });
