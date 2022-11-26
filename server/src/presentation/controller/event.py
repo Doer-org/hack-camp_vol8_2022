@@ -43,7 +43,7 @@ def event_to_json(e: Event) -> dict:
         "number": e.number,
         "total_amount": e.total_amount,
         "admin_id": e.admin_id,
-        "participants": participants_to_jsons(e.participants),
+        # "participants": participants_to_jsons(e.participants),
     }
 
 
