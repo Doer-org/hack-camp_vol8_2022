@@ -2,11 +2,12 @@ import { $axios } from './axios';
 import { useNavigate } from 'react-router-dom';
 
 export const useCreateEvent = () => {
+  const navigate = useNavigate();
   const createEvent = async (data) => {
-    const navigate = useNavigate();
     await $axios
       .post('/event', data)
       .then((res) => {
+        console.log('success');
         navigate('/new/complete', {
           state: { id: res.data.id }
         });
