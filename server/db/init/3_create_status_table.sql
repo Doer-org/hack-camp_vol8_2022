@@ -18,4 +18,4 @@ INSERT INTO "status" ("is_payment", "user_id", "event_id")
 VALUES ('true', 1, 2);
 
 INSERT INTO "status" ("is_payment", "user_id", "event_id")
-VALUES ('true', 2, 1);
+VALUES ('false', 2, 1);
