@@ -18,6 +18,7 @@ __c = EventController(__s)
 def get(id):
     return __c.get(id)
 
+
 @api.route("/event", methods=["POST"])
 def create():
     return __c.create()

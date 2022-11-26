@@ -10,6 +10,8 @@ from linebot.models import (
 )
 import os
 
+import server.src.notification.scheduler
+
 
 api = Blueprint("health_line", __name__)
 ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
@@ -40,7 +42,10 @@ def callback():
 def health_line():
     # 指定したユーザーIDに通知
     text_message = "Hello world!"
-    messages = TextSendMessage(text=text_message)
-    line_bot_api.broadcast(messages=messages)
-    # line_bot_api.push_message(USER_ID_DEBUG, TextSendMessage(text=text_message))
+    # messages = TextSendMessage(text=text_message)
+    # line_bot_api.broadcast(messages=messages)
+    line_bot_api.push_message(USER_ID_DEBUG, TextSendMessage(text=text_message))
+
+    server.src.notification.scheduler.scheduler()
+
     return {"health_line": "good!!!!"}
