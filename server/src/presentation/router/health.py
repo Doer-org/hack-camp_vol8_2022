@@ -6,4 +6,4 @@ api = Blueprint("health", __name__)
 
 @api.route("/", methods=["GET"])
 def health():
-    return {"health": "good!!!!"}
+    return {"health": "good"}
