@@ -7,7 +7,7 @@ export const useEvent = () => {
   const getEvent = async (event_id) => {
     const event = await $axios
       .get(`/event`, {
-        id: session.id,
+        id: 1,
         event_id: event_id
       })
       .then((res) => {
