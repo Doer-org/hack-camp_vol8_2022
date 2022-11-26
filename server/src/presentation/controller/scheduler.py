@@ -13,8 +13,8 @@ class SchedulerController:
         if err != None:
             return err.create_resp()
 
-        eJson = model_to_json(scheduler)
-        return eJson
+        # eJson = model_to_json(scheduler)
+        return 0
 
     # def get_all(self) -> dict:
     #     users, err = self.__service.get_all()
