@@ -55,7 +55,7 @@ export const EventOfMember = ({ event }) => {
           {/* 支払うべきお金 */}
           {Math.ceil((event.total_amount / event.number) * 0.01) / 0.01}円
         </div>
-        <div className="font-bold">TO</div>
+        {/* <div className="font-bold">TO</div>
         <div className="shadow-lg rounded-2xl bg-white p-2">
           <div className="flex-row gap-4 flex justify-center items-center">
             <div className="flex-shrink-0">
@@ -69,7 +69,7 @@ export const EventOfMember = ({ event }) => {
               <span className="text-gray-600 text-lg font-medium">event</span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
