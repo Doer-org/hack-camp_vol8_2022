@@ -1,5 +1,6 @@
 import { $axios } from './axios';
 import { isAuthenticatedState } from 'hooks/sessionStore';
+import { useQuery } from 'react-query';
 import { useRecoilState } from 'recoil';
 
 export const useEvent = (event_id) => {
@@ -16,11 +17,11 @@ export const useEvent = (event_id) => {
     return event;
   };
 
-  // const { data: eventRes } = useQuery(
-  //   ['/event'],
-  //   () => $axios.get(`/event/${event_id}`).then((res) => res.data),
-  //   { keepPreviousData: true }
-  // );
+  const { data: eventRes } = useQuery(
+    ['/event'],
+    () => $axios.get(`/event/${event_id}`).then((res) => res.data),
+    { keepPreviousData: true }
+  );
 
   const participateEvent = async (event_id) => {
     const event = await $axios
@@ -52,5 +53,5 @@ export const useEvent = (event_id) => {
     return event;
   };
 
-  return { getEvent, completePayment };
+  return { getEvent, completePayment, eventRes };
 };
