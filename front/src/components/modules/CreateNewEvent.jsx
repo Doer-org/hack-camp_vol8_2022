@@ -4,12 +4,13 @@ import Modal from '../atoms/Modal';
 import { useCreateEvent } from 'hooks/api/useCreateEvent';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 export const CreateEventForm = () => {
   const { createEvent } = useCreateEvent();
   const [isOpen, setIsOpen] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleCanSubmit = () => {
     setCanSubmit(true);
@@ -32,11 +33,11 @@ export const CreateEventForm = () => {
       closeModal();
       handleCannotSubmit();
       //APIを叩く
-      createEvent(data);
+      // createEvent(data);
       //飛ばす
-      // navigate('/new/complete', {
-      //   state: { id: 1 }
-      // });
+      navigate('/new/complete', {
+        state: { id: 5 }
+      });
     } else {
       handleCanSubmit();
       openModal();
