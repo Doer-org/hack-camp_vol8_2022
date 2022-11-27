@@ -1,19 +1,28 @@
 import { $axios } from './axios';
+import { isAuthenticatedState } from 'hooks/sessionStore';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 
 export const useCreateEvent = () => {
   const navigate = useNavigate();
+  const [session] = useRecoilState(isAuthenticatedState);
   const createEvent = async (data) => {
     await $axios
-      .post('/event', {
-        ...data,
-        admin_id: 1,
-      }, {
-        withCredentials: true,
-        headers: {
-          'Content-Type': 'application/json'
+      .post(
+        '/event',
+        {
+          name: data.name,
+          number: data.number,
+          total_amount: data.total_amount,
+          admin_id: session.id
+        },
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json'
+          }
         }
-      })
+      )
       .then((res) => {
         console.log('success');
         navigate('/new/complete', {
