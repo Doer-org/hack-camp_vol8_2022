@@ -26,6 +26,7 @@ class SchedulerRepository:
             self.__session.query(
                 UserDto,
                 UserDto.line_id,
+                UserDto.display_name,
                 EventDto.total_amount,
                 EventDto.number,
             )
@@ -36,8 +37,8 @@ class SchedulerRepository:
         )
 
         # notificationに渡す
-        list_line_id, list_price = dtos_to_scheduler(dtos_notification_user)
-        notification.scheduler.scheduler(list_line_id, list_price)
+        list_line_id, list_price, list_display_name = dtos_to_scheduler(dtos_notification_user)
+        notification.scheduler.scheduler(list_line_id, list_price, list_display_name)
         # 返り値でエラーでるかも
         return dtos_to_scheduler(dtos_notification_user), None
 
@@ -45,8 +46,10 @@ class SchedulerRepository:
 def dtos_to_scheduler(dtos_user: list):
     list_line_id = []
     list_price = []
+    list_display_name = []
     for dto_user in dtos_user:
         list_line_id.append(dto_user.line_id)
         price = math.ceil(dto_user.total_amount/dto_user.number / 100) * 100
         list_price.append(price)
-    return list_line_id, list_price
+        list_display_name.append(dto_user.display_name)
+    return list_line_id, list_price, list_display_name
