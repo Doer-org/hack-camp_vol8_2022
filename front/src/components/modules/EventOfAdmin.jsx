@@ -1,8 +1,9 @@
 import { BaseButton } from '.././atoms/BaseButton';
+import { useEvent } from 'hooks/api/useEvent';
 
 export const EventOfAdmin = ({ event }) => {
-  // const { completePayment } = useEvent();
-  console.log('event', event);
+  const { completePayment } = useEvent();
+
   const UserRow = ({ participant, key }) => {
     <li className="flex flex-row" key={key}>
       <div className="select-none cursor-pointer flex flex-1 items-center p-4">
@@ -20,9 +21,9 @@ export const EventOfAdmin = ({ event }) => {
           label="完了"
           color="bg-purple-600 hover:bg-purple-700 text-white"
           type="submit"
-          // onClick={() => {
-          //   completePayment(participant.user.id, participant.status.event_id);
-          // }}
+          onClick={() => {
+            completePayment(participant.user.id, participant.status.event_id);
+          }}
         />
       </div>
     </li>;
@@ -34,16 +35,16 @@ export const EventOfAdmin = ({ event }) => {
       </h2>
 
       <div className="text-center font-bold my-5">
-        {/* {event.participants.length}/{event.number} */}
+        {event.participants.length}/{event.number}
       </div>
 
-      {/* <div className="container flex flex-col mx-auto w-72 items-center justify-center bg-white rounded-lg shadow">
+      <div className="container flex flex-col mx-auto w-72 items-center justify-center bg-white rounded-lg shadow">
         <ul className="flex flex-col divide divide-y">
           {event.participants.map((participant, index) => (
             <UserRow participant={participant} key={index} />
           ))}
         </ul>
-      </div> */}
+      </div>
     </>
   );
 };

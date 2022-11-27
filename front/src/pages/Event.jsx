@@ -39,7 +39,6 @@ export const Event = () => {
 
   return (
     <div>
-      こんにちは
       {event && event.admin_id === session.id && <EventOfAdmin event={event} />}
       {event && event.admin_id !== session.id && (
         <EventOfMember event={event} />
