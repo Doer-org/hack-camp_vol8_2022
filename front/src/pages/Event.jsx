@@ -9,20 +9,22 @@ import { useRecoilState } from 'recoil';
 export const Event = () => {
   const { id } = useParams();
   const [session] = useRecoilState(isAuthenticatedState);
-  const [state, setState] = useState();
+  const [event, setEvent] = useState();
 
   $axios
     .get(`/event/${id}`)
     .then((res) => {
-      setState(res.data);
+      setEvent(res.data);
     })
     .catch((error) => {
       throw error;
     });
 
   useEffect(() => {
-    console.log(state);
-  }, [state]);
+    if (event !== null) {
+      console.log(event);
+    }
+  }, [event]);
 
   // const event = getEvent();
   // console.log('event', event);
