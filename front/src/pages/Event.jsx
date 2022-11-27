@@ -8,7 +8,7 @@ import { useRecoilState } from 'recoil';
 export const Event = () => {
   const { id } = useParams();
   const [session] = useRecoilState(isAuthenticatedState);
-  const [event, setEvent] = useState({ user: 1, name: 'bob' });
+  const [event, setEvent] = useState(null);
 
   // const { data } = useQuery(['/event/id'], () =>
   //   $axios.get(`/event/${id}`).then((res) => {
