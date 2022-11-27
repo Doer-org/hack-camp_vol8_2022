@@ -1,3 +1,4 @@
+import { EventOfAdmin } from 'components/modules/EventOfAdmin';
 import { isAuthenticatedState } from 'hooks/sessionStore';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -29,7 +30,12 @@ export const Event = () => {
     // setEvent(e);
   }, []);
 
-  return <div>こんにちは</div>;
+  return (
+    <div>
+      こんにちは
+      <EventOfAdmin event={event} />
+    </div>
+  );
   // const { eventRes } = useEvent(id);
   // イベントのadmin_idがログインユーザーのidと一致するかどうかで表示を分ける
   // if (event.admin_id === session.id) {
