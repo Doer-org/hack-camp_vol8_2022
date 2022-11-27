@@ -8,7 +8,7 @@ export const EventOfMember = ({ event }) => {
   const participateEvent = async () => {
     await $axios
       .post(`/status`, {
-        id: session.id,
+        user_id: session.id,
         event_id: event.id
       })
       .then((res) => {
