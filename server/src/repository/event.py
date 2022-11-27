@@ -8,6 +8,7 @@ from repository.status_dto import StatusDto
 from repository.user_dto import UserDto
 from sqlalchemy.orm.session import Session
 from utils.error.error import Error
+from sqlalchemy.sql.expression import false
 
 
 class EventRepository:
@@ -36,6 +37,7 @@ class EventRepository:
                 )
                 .join(StatusDto, StatusDto.user_id == UserDto.id)
                 .filter(StatusDto.event_id == dto_event.id)
+                .filter(StatusDto.is_payment == false())
                 .all()
             )
             dto_to_participant = ()
