@@ -18,6 +18,7 @@ export const Event = () => {
   // );
 
   useEffect(() => {
+    console.log('test');
     const getEvent = async () => {
       const response = await $axios.get(`/event/${id}`).then((res) => {
         console.log('res', res.data);
