@@ -1,4 +1,5 @@
 import { EventOfAdmin } from 'components/modules/EventOfAdmin';
+import { EventOfMember } from 'components/modules/EventOfMember';
 import { $axios } from 'hooks/api/axios';
 import { isAuthenticatedState } from 'hooks/sessionStore';
 import { useEffect, useState } from 'react';
@@ -39,7 +40,10 @@ export const Event = () => {
   return (
     <div>
       こんにちは
-      {event && <EventOfAdmin event={event} />}
+      {event && event.admin_id === session.id && <EventOfAdmin event={event} />}
+      {event && event.admin_id !== session.id && (
+        <EventOfMember event={event} />
+      )}
     </div>
   );
   // const { eventRes } = useEvent(id);
