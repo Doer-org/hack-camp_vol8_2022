@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import { $axios } from './axios';
+import { useNavigate } from 'react-router-dom';
 
 export const useCreateEvent = () => {
   const navigate = useNavigate();
