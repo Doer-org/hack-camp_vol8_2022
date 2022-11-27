@@ -17,10 +17,11 @@ export const useEvent = (event_id) => {
     return event;
   };
 
-  const { data: eventRes } = useQuery(
-    ['/event'],
-    () => $axios.get(`/event/${event_id}`).then((res) => res.data),
-    { keepPreviousData: true }
+  const { data: eventRes } = useQuery(['/event'], () =>
+    $axios.get(`/event/${event_id}`).then((res) => {
+      console.log('res', res.data);
+      return res.data;
+    })
   );
 
   const participateEvent = async (event_id) => {
