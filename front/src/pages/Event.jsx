@@ -12,6 +12,7 @@ export const Event = () => {
   const { getEvent } = useEvent();
   // idを元にBEからイベント情報を取得する
   const event = getEvent(id);
+  console.log(event);
 
   // イベントのadmin_idがログインユーザーのidと一致するかどうかで表示を分ける
   if (event.admin_id === session.id) {

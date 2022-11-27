@@ -11,7 +11,8 @@ export const useEvent = () => {
         return res.data;
       })
       .catch(() => {
-        participateEvent(event_id);
+        console.log('イベント取得失敗');
+        // participateEvent(event_id);
       });
     return event;
   };
