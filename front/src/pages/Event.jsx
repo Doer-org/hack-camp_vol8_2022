@@ -2,28 +2,32 @@ import { EventOfAdmin } from '../components/modules/EventOfAdmin';
 import { EventOfMember } from '../components/modules/EventOfMember';
 import { $axios } from 'hooks/api/axios';
 import { isAuthenticatedState } from 'hooks/sessionStore';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 export const Event = () => {
   const { id } = useParams();
   const [session] = useRecoilState(isAuthenticatedState);
-  const [event, setEvent] = useState(null);
+  const [state, setEvent] = useState(null);
 
-  useEffect(() => {
-    console.log('event', event);
-  }, [event]);
+  const getEvent = async () => {
+    const event = await $axios
+      .get(`/event/${id}`)
+      .then((res) => {
+        console.log(res);
+        setEvent(res.data);
+      })
+      .catch((error) => {
+        throw error;
+      });
 
-  $axios
-    .get(`/event/${id}`)
-    .then((res) => {
-      console.log(res);
-      setEvent(res.data);
-    })
-    .catch((error) => {
-      throw error;
-    });
+    return event;
+  };
+
+  const event = getEvent();
+  console.log('event', event);
+  console.log('state', state);
 
   // const { eventRes } = useEvent(id);
   // useEffect(() => {
