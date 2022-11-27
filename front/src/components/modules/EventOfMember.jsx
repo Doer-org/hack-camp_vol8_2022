@@ -1,6 +1,25 @@
+import { $axios } from 'hooks/api/axios';
+import { isAuthenticatedState } from 'hooks/sessionStore';
 import React from 'react';
+import { useRecoilState } from 'recoil';
 
 export const EventOfMember = ({ event }) => {
+  const [session] = useRecoilState(isAuthenticatedState);
+  const participateEvent = async () => {
+    await $axios
+      .post(`/status`, {
+        id: session.id,
+        event_id: event.id
+      })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((error) => {
+        throw error;
+      });
+    return event;
+  };
+  participateEvent();
   return (
     <>
       <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">
@@ -23,7 +42,7 @@ export const EventOfMember = ({ event }) => {
                 </svg>
               </span>
               <p className="ml-3 font-medium text-white truncate">
-                <span className="md:hidden">あなたは借金中です。</span>
+                <span className="">あなたは借金中です。</span>
               </p>
             </div>
           </div>

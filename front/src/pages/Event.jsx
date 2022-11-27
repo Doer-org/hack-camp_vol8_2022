@@ -45,11 +45,4 @@ export const Event = () => {
       )}
     </div>
   );
-  // const { eventRes } = useEvent(id);
-  // イベントのadmin_idがログインユーザーのidと一致するかどうかで表示を分ける
-  // if (event.admin_id === session.id) {
-  //   return <EventOfAdmin event={event} />;
-  // } else {
-  //   return <EventOfMember event={event} />;
-  // }
 };
