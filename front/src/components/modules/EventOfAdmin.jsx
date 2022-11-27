@@ -2,7 +2,7 @@ import { BaseButton } from '.././atoms/BaseButton';
 
 export const EventOfAdmin = ({ event }) => {
   // const { completePayment } = useEvent();
-
+  console.log('event', event);
   const UserRow = ({ participant, key }) => {
     <li className="flex flex-row" key={key}>
       <div className="select-none cursor-pointer flex flex-1 items-center p-4">
