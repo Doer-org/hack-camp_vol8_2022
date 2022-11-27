@@ -1,7 +1,7 @@
 import { EventOfAdmin } from '../components/modules/EventOfAdmin';
-import { useEvent } from 'hooks/api/useEvent';
+import { $axios } from 'hooks/api/axios';
 import { isAuthenticatedState } from 'hooks/sessionStore';
-import { useEffect } from 'react';
+import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
@@ -9,14 +9,14 @@ export const Event = () => {
   const { id } = useParams();
   const [session] = useRecoilState(isAuthenticatedState);
 
-  const { eventRes } = useEvent(id);
-  console.log(eventRes);
+  const { data: eventRes } = useQuery(['/event/id'], () =>
+    $axios.get(`/event/${id}`).then((res) => {
+      console.log('res', res.data);
+      return res.data;
+    })
+  );
 
-  useEffect(() => {
-    console.log(eventRes, 'eventRes');
-  }, [eventRes]);
-
-  // console.log('eventRes', eventRes);
+  console.log('eventRes', eventRes);
   return <EventOfAdmin event={eventRes} />;
   // const { eventRes } = useEvent(id);
   // イベントのadmin_idがログインユーザーのidと一致するかどうかで表示を分ける

@@ -17,7 +17,7 @@ export const useEvent = (event_id) => {
     return event;
   };
 
-  const { data: eventRes } = useQuery(['/event'], () =>
+  const { data: eventRes } = useQuery(['/event/id'], () =>
     $axios.get(`/event/${event_id}`).then((res) => {
       console.log('res', res.data);
       return res.data;
