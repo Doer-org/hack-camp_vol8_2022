@@ -1,6 +1,6 @@
 import { $axios } from 'hooks/api/axios';
 import { isAuthenticatedState } from 'hooks/sessionStore';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRecoilState } from 'recoil';
 
 export const EventOfMember = ({ event }) => {
@@ -19,9 +19,6 @@ export const EventOfMember = ({ event }) => {
       });
     return event;
   };
-  useEffect(() => {
-    participateEvent();
-  }, []);
   participateEvent();
   return (
     <>
