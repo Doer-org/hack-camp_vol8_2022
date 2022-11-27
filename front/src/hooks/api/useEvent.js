@@ -8,7 +8,7 @@ export const useEvent = () => {
     const event = await $axios
       .get(`/event/${event_id}`)
       .then((res) => {
-        return res.data;
+        return res.data.PromiseResult;
       })
       .catch(() => {
         console.log('イベント取得失敗');
