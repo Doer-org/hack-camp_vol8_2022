@@ -23,6 +23,8 @@ export const Event = () => {
       throw error;
     });
 
+  console.log(event);
+
   // イベントのadmin_idがログインユーザーのidと一致するかどうかで表示を分ける
   if (event.admin_id === session.id) {
     return <EventOfAdmin event={event} />;
