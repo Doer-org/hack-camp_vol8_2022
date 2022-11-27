@@ -10,7 +10,14 @@ export const Event = () => {
 
   const [session] = useRecoilState(isAuthenticatedState);
 
-  const event = $axios.get(`/event/${id}`);
+  const event = $axios
+    .get(`/event/${id}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((error) => {
+      throw error;
+    });
 
   // idを元にBEからイベント情報を取得する
   console.log(event);
