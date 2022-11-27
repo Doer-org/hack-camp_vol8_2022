@@ -9,15 +9,15 @@ export const Event = () => {
   const { id } = useParams();
   const [session] = useRecoilState(isAuthenticatedState);
 
-  const { data: eventRes } = useQuery(['/event/id'], () =>
+  const { data } = useQuery(['/event/id'], () =>
     $axios.get(`/event/${id}`).then((res) => {
       console.log('res', res.data);
       return res.data;
     })
   );
 
-  console.log('eventRes', eventRes);
-  return <EventOfAdmin event={eventRes} />;
+  console.log('eventRes', data);
+  return <EventOfAdmin event={data} />;
   // const { eventRes } = useEvent(id);
   // イベントのadmin_idがログインユーザーのidと一致するかどうかで表示を分ける
   // if (event.admin_id === session.id) {
