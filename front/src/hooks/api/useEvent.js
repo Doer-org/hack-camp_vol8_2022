@@ -7,14 +7,16 @@ export const useEvent = () => {
 
   const completePayment = async (user_id, event_id) => {
     const event = await $axios
-      .post(`/status`, {
+      .put(`/status`, {
         user_id: user_id,
         event_id: event_id
       })
       .then((res) => {
+        console.log('完了');
         return res.data;
       })
       .catch((error) => {
+        console.log('失敗');
         throw error;
       });
     return event;
