@@ -5,15 +5,14 @@ import { useRecoilState } from 'recoil';
 export const useEvent = () => {
   const [session] = useRecoilState(isAuthenticatedState);
   const getEvent = async (event_id) => {
-    const event = await $axios
-      .get(`/event/${event_id}`)
-      .then((res) => {
-        return res.data.PromiseResult;
-      })
-      .catch(() => {
-        console.log('イベント取得失敗');
-        // participateEvent(event_id);
-      });
+    const event = await $axios.get(`/event/${event_id}`);
+    // .then((res) => {
+    //   return res.data.PromiseResult;
+    // })
+    // .catch(() => {
+    //   console.log('イベント取得失敗');
+    //   // participateEvent(event_id);
+    // });
     return event;
   };
 
