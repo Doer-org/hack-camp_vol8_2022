@@ -13,6 +13,7 @@ export const Event = () => {
   $axios
     .get(`/event/${id}`)
     .then((res) => {
+      console.log(res.data, 'res.data');
       setEvent(res.data);
     })
     .catch((error) => {
@@ -20,9 +21,7 @@ export const Event = () => {
     });
 
   useEffect(() => {
-    if (event !== null) {
-      console.log(event);
-    }
+    console.log(event);
   }, [event]);
 
   // const event = getEvent();
