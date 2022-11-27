@@ -5,7 +5,10 @@ export const useCreateEvent = () => {
   const navigate = useNavigate();
   const createEvent = async (data) => {
     await $axios
-      .post('/event', data, {
+      .post('/event', {
+        ...data,
+        admin_id: 1,
+      }, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json'
