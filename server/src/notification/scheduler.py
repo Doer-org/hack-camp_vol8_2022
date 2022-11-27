@@ -10,7 +10,7 @@ from linebot.models import (
 import os
 
 
-def scheduler(list_line_id: list, list_price: list):
+def scheduler(list_line_id: list, list_price: list, list_display_name: list):
     # 指定したユーザーIDに通知
     ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
     # SECRET = os.environ["SECRET"]
@@ -18,6 +18,6 @@ def scheduler(list_line_id: list, list_price: list):
     line_bot_api = LineBotApi(ACCESS_TOKEN)
     default_text_message1 = "なんで払ってくれないの！"
     default_text_message2 = "円払ってよ！　私待ってるよ！"
-    for line_id, price in zip(list_line_id, list_price):
-        text_message = default_text_message1 + str(price) + default_text_message2
+    for line_id, price, display_name in zip(list_line_id, list_price, list_display_name):
+        text_message = display_name + "!!!" + default_text_message1 + str(price) + default_text_message2
         line_bot_api.push_message(line_id, TextSendMessage(text=text_message))
