@@ -20,10 +20,15 @@ export const Event = () => {
   useEffect(() => {
     console.log('test');
     const getEvent = async () => {
-      const response = await $axios.get(`/event/${id}`).then((res) => {
-        console.log('res', res.data);
-        return res.data;
-      });
+      const response = await $axios
+        .get(`/event/${id}`)
+        .then((res) => {
+          console.log('res', res.data);
+          return res.data;
+        })
+        .catch((err) => {
+          console.log('err', err);
+        });
       console.log(response.data);
       return response.data;
     };
