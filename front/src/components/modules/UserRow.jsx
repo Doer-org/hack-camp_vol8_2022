@@ -1,3 +1,5 @@
+const { BaseButton } = require('components/atoms/BaseButton');
+
 const UserRow = ({ participant, key }) => {
   <li className="flex flex-row" key={key}>
     <div className="select-none cursor-pointer flex flex-1 items-center p-4">

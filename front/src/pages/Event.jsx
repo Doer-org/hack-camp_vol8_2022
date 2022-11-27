@@ -24,6 +24,7 @@ export const Event = () => {
         .get(`/event/${id}`)
         .then((res) => {
           console.log('res', res.data);
+          setEvent(res.data);
           return res.data;
         })
         .catch((err) => {
@@ -32,9 +33,7 @@ export const Event = () => {
       console.log(response.data);
       return response.data;
     };
-    const e = getEvent();
-    console.log('e', e);
-    setEvent(e);
+    getEvent();
   }, []);
 
   return (
