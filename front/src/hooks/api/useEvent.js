@@ -16,6 +16,12 @@ export const useEvent = () => {
     return event;
   };
 
+  // const { data: eventRes, refetch } = useQuery(
+  //   ['/music'],
+  //   () => $axios.get(`/event/${event_id}`).then((res) => res.data),
+  //   { keepPreviousData: true }
+  // );
+
   const participateEvent = async (event_id) => {
     const event = await $axios
       .post(`/status`, {
