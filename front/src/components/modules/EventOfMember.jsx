@@ -12,9 +12,11 @@ export const EventOfMember = ({ event }) => {
         event_id: event.id
       })
       .then((res) => {
+        console.log('成功したぜ');
         return res.data;
       })
       .catch((error) => {
+        console.log('失敗したぜ');
         throw error;
       });
     return event;
