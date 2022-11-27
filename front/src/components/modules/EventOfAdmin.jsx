@@ -40,9 +40,12 @@ export const EventOfAdmin = ({ event }) => {
 
       <div className="container flex flex-col mx-auto w-72 items-center justify-center bg-white rounded-lg shadow">
         <ul className="flex flex-col divide divide-y">
-          {event.participants.map((participant, index) => (
-            <UserRow participant={participant} key={index} />
-          ))}
+          {event.participants.map(
+            (participant, index) => (
+              console.log(participant),
+              (<UserRow participant={participant} key={index} />)
+            )
+          )}
         </ul>
       </div>
     </>
