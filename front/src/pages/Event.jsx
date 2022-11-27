@@ -39,7 +39,7 @@ export const Event = () => {
   return (
     <div>
       こんにちは
-      <EventOfAdmin event={event} />
+      {event && <EventOfAdmin event={event} />}
     </div>
   );
   // const { eventRes } = useEvent(id);
