@@ -14,6 +14,11 @@ class UserService:
             return None, Error(msg="line_id is invalid")
         return self.__repository.get(line_id)
 
+    def get_id(self, id: int) -> Tuple[User, Error]:
+        if id == "":
+            return None, Error(msg="id is invalid")
+        return self.__repository.get_id(id)
+
     # def get_all(self) -> Tuple[list, Error]:
     #     return self.__repository.get_all()
 

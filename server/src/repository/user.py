@@ -24,6 +24,19 @@ class UserRepository:
         except Exception as e:
             return None, e
 
+    def get_id(self, id: int) -> Tuple[User, Error]:
+        try:
+            dto = (
+                self.__session.query(UserDto)
+                .filter(UserDto.id == id)
+                .limit(1)
+                .one()
+                # .first()
+            )
+            return dto_to_user(dto), None
+        except Exception as e:
+            return None, e
+
             # TODO 見つからなかった場合のエラーハンドリング
             # if dto != None:
             #     return dto_to_user(dto), None

@@ -16,6 +16,15 @@ class UserController:
         uJson = user_to_json(user)
         return uJson
 
+    def get_id(self, id: int) -> dict:
+        user, err = self.__service.get_id(id)
+        if err != None:
+            return str(err)
+            # return err.create_resp()
+
+        uJson = user_to_json(user)
+        return uJson
+
     # def get_all(self) -> dict:
     #     users, err = self.__service.get_all()
     #     if err != None:
