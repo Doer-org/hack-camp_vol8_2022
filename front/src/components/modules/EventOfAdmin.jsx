@@ -34,16 +34,16 @@ export const EventOfAdmin = ({ event }) => {
       </h2>
 
       <div className="text-center font-bold my-5">
-        {event.participants.length}/{event.number}
+        {/* {event.participants.length}/{event.number} */}
       </div>
 
-      <div className="container flex flex-col mx-auto w-72 items-center justify-center bg-white rounded-lg shadow">
+      {/* <div className="container flex flex-col mx-auto w-72 items-center justify-center bg-white rounded-lg shadow">
         <ul className="flex flex-col divide divide-y">
           {event.participants.map((participant, index) => (
             <UserRow participant={participant} key={index} />
           ))}
         </ul>
-      </div>
+      </div> */}
     </>
   );
 };
