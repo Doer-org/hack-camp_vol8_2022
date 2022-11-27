@@ -33,6 +33,7 @@ export const Event = () => {
       return response.data;
     };
     const e = getEvent();
+    console.log('e', e);
     setEvent(e);
   }, []);
 
