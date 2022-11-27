@@ -1,5 +1,4 @@
 import { EventOfAdmin } from '../components/modules/EventOfAdmin';
-import { EventOfMember } from '../components/modules/EventOfMember';
 import { $axios } from 'hooks/api/axios';
 import { isAuthenticatedState } from 'hooks/sessionStore';
 import { useEffect, useState } from 'react';
@@ -28,12 +27,12 @@ export const Event = () => {
 
   // const event = getEvent();
   // console.log('event', event);
-
+  return <EventOfAdmin event={event} />;
   // const { eventRes } = useEvent(id);
   // イベントのadmin_idがログインユーザーのidと一致するかどうかで表示を分ける
-  if (event.admin_id === session.id) {
-    return <EventOfAdmin event={event} />;
-  } else {
-    return <EventOfMember event={event} />;
-  }
+  // if (event.admin_id === session.id) {
+  //   return <EventOfAdmin event={event} />;
+  // } else {
+  //   return <EventOfMember event={event} />;
+  // }
 };
