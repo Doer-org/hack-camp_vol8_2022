@@ -18,6 +18,11 @@ def get(line_id):
     return __c.get(line_id)
 
 
+@api.route("/user_id/<int:id>", methods=["GET"])
+def get_id(id):
+    return __c.get_id(id)
+
+
 # @api.route("/user/all", methods=["GET"])
 # def get_all():
 #     return __c.get_all()
