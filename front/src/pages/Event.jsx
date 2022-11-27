@@ -1,5 +1,4 @@
 import { EventOfAdmin } from '../components/modules/EventOfAdmin';
-import { $axios } from 'hooks/api/axios';
 import { isAuthenticatedState } from 'hooks/sessionStore';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -19,16 +18,16 @@ export const Event = () => {
 
   useEffect(() => {
     console.log('test');
-    const getEvent = async () => {
-      const response = await $axios.get(`/event/${id}`).then((res) => {
-        console.log('res', res.data);
-        return res.data;
-      });
-      console.log(response.data);
-      return response.data;
-    };
-    const e = getEvent();
-    setEvent(e);
+    // const getEvent = async () => {
+    //   const response = await $axios.get(`/event/${id}`).then((res) => {
+    //     console.log('res', res.data);
+    //     return res.data;
+    //   });
+    //   console.log(response.data);
+    //   return response.data;
+    // };
+    // const e = getEvent();
+    // setEvent(e);
   }, []);
 
   return <EventOfAdmin event={event} />;
