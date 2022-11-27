@@ -1,8 +1,7 @@
 import { BaseButton } from '.././atoms/BaseButton';
-import { useEvent } from 'hooks/api/useEvent';
 
 export const EventOfAdmin = ({ event }) => {
-  const { completePayment } = useEvent();
+  // const { completePayment } = useEvent();
 
   const UserRow = ({ participant, key }) => {
     <li className="flex flex-row" key={key}>
@@ -21,9 +20,9 @@ export const EventOfAdmin = ({ event }) => {
           label="完了"
           color="bg-purple-600 hover:bg-purple-700 text-white"
           type="submit"
-          onClick={() => {
-            completePayment(participant.user.id, participant.status.event_id);
-          }}
+          // onClick={() => {
+          //   completePayment(participant.user.id, participant.status.event_id);
+          // }}
         />
       </div>
     </li>;
